@@ -1,0 +1,972 @@
+{
+ "variables_entrada": [
+  "edad",
+  "edad_inicio_consumo",
+  "n_hijos",
+  "nivel_educativo",
+  "ingreso_familiar",
+  "n_sustancias",
+  "antec_legales",
+  "violencia_intrafamiliar",
+  "abuso_sexual",
+  "hosp_previa_tus",
+  "rehab_previa",
+  "intento_suicida_previo",
+  "conducta_autolesiva",
+  "cp_depresivo",
+  "cp_personalidad",
+  "cp_bipolar",
+  "comorb_medica",
+  "policonsumo",
+  "sx_heteroagresion_e1",
+  "sx_sensoperceptual_e1",
+  "sx_delirante_e1",
+  "es_extranjera",
+  "droga_eleccion",
+  "convivencia",
+  "ocupacion",
+  "motivo_hosp_e1"
+ ],
+ "n": 118,
+ "k_evaluados": {
+  "k": [
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8
+  ],
+  "sil_pam": [
+   0.244,
+   0.187,
+   0.136,
+   0.135,
+   0.138,
+   0.132,
+   0.117
+  ],
+  "sil_hc": [
+   0.229,
+   0.212,
+   0.167,
+   0.146,
+   0.17,
+   0.163,
+   0.167
+  ],
+  "cost_pam": [
+   33.811,
+   30.878,
+   28.981,
+   27.46,
+   26.477,
+   25.624,
+   24.855
+  ]
+ },
+ "k_elegido": 2,
+ "silueta": 0.244,
+ "tamanos": {
+  "1": 66,
+  "2": 52
+ },
+ "estabilidad_ARI": {
+  "media": 0.928,
+  "de": 0.096,
+  "min": 0.685
+ },
+ "silueta_por_cluster": {
+  "1": 0.228,
+  "2": 0.264
+ },
+ "perfil_pct": {
+  "Antecedentes legales": {
+   "1": 30.3,
+   "2": 78.8
+  },
+  "Violencia intrafamiliar": {
+   "1": 81.8,
+   "2": 78.8
+  },
+  "Abuso sexual": {
+   "1": 59.1,
+   "2": 50.0
+  },
+  "Hospitalización previa TUS": {
+   "1": 19.7,
+   "2": 78.8
+  },
+  "Rehabilitación previa": {
+   "1": 21.2,
+   "2": 34.6
+  },
+  "Intento suicida previo": {
+   "1": 69.7,
+   "2": 34.6
+  },
+  "Conducta autolesiva": {
+   "1": 59.1,
+   "2": 28.8
+  },
+  "T. depresivo": {
+   "1": 53.0,
+   "2": 13.5
+  },
+  "T. personalidad": {
+   "1": 40.9,
+   "2": 17.3
+  },
+  "T. bipolar": {
+   "1": 6.1,
+   "2": 46.2
+  },
+  "Comorbilidad médica": {
+   "1": 51.5,
+   "2": 30.8
+  },
+  "Policonsumo": {
+   "1": 80.3,
+   "2": 80.8
+  },
+  "Heteroagresión (1er ingreso)": {
+   "1": 12.1,
+   "2": 84.6
+  },
+  "Alt. sensoperceptuales (1er ingreso)": {
+   "1": 9.1,
+   "2": 84.6
+  },
+  "Ideas delirantes (1er ingreso)": {
+   "1": 1.5,
+   "2": 82.7
+  },
+  "Extranjera": {
+   "1": 21.2,
+   "2": 15.4
+  },
+  "Reingreso 90 d (desenlace)": {
+   "1": 13.6,
+   "2": 25.0
+  },
+  "Comorbilidad psiquiátrica": {
+   "1": 77.3,
+   "2": 65.4
+  },
+  "Grupos de autoayuda": {
+   "1": 31.8,
+   "2": 34.6
+  },
+  "Atención previa SM": {
+   "1": 87.9,
+   "2": 98.1
+  },
+  "Programa CETA (1er ingreso)": {
+   "1": 43.9,
+   "2": 0.0
+  },
+  "Inicio <15 años": {
+   "1": 50.0,
+   "2": 46.2
+  },
+  "Desempleada": {
+   "1": 57.6,
+   "2": 73.1
+  },
+  "Ingreso <500": {
+   "1": 16.7,
+   "2": 53.8
+  },
+  "≥4 sustancias": {
+   "1": 34.8,
+   "2": 42.3
+  }
+ },
+ "perfil_num": {
+  "Edad (mediana)": {
+   "1": 30.0,
+   "2": 32.0
+  },
+  "Edad inicio (mediana)": {
+   "1": 14.5,
+   "2": 15.0
+  },
+  "Hijos (mediana)": {
+   "1": 0.5,
+   "2": 1.0
+  },
+  "Intentos suicidas (mediana)": {
+   "1": 1.0,
+   "2": 0.0
+  },
+  "Episodios (media)": {
+   "1": 1.29,
+   "2": 1.69
+  }
+ },
+ "droga_por_cluster": {
+  "1": {
+   "2C-B (tusi)": 6.1,
+   "Alcohol": 22.7,
+   "Benzodiacepinas": 9.1,
+   "Cannabis": 13.600000000000001,
+   "Cocaína": 33.300000000000004,
+   "Metanfetamina": 0.0,
+   "Nicotina": 6.1,
+   "Opioides": 3.0,
+   "Piedra/crack": 6.1
+  },
+  "2": {
+   "2C-B (tusi)": 0.0,
+   "Alcohol": 21.2,
+   "Benzodiacepinas": 0.0,
+   "Cannabis": 23.1,
+   "Cocaína": 36.5,
+   "Metanfetamina": 5.800000000000001,
+   "Nicotina": 5.800000000000001,
+   "Opioides": 0.0,
+   "Piedra/crack": 7.7
+  }
+ },
+ "convivencia_por_cluster": {
+  "1": {
+   "Amistades u otros": 9.1,
+   "Con pareja": 10.6,
+   "Familia extensa": 27.3,
+   "Familia nuclear": 31.8,
+   "Privada de libertad": 0.0,
+   "Situación de calle": 0.0,
+   "Sola": 21.2
+  },
+  "2": {
+   "Amistades u otros": 5.800000000000001,
+   "Con pareja": 5.800000000000001,
+   "Familia extensa": 34.599999999999994,
+   "Familia nuclear": 25.0,
+   "Privada de libertad": 7.7,
+   "Situación de calle": 9.6,
+   "Sola": 11.5
+  }
+ },
+ "educacion_por_cluster": {
+  "1": {
+   "Posgrado": 1.5,
+   "Primaria": 15.2,
+   "Secundaria": 50.0,
+   "Técnica": 9.1,
+   "Universitaria": 24.2
+  },
+  "2": {
+   "Posgrado": 1.9,
+   "Primaria": 30.8,
+   "Secundaria": 51.9,
+   "Técnica": 1.9,
+   "Universitaria": 13.5
+  }
+ },
+ "desenlaces": {
+  "1": {
+   "episodios": 85,
+   "dias_mediana": 10.0,
+   "reingreso_pct": 12.9,
+   "alta_vol_pct": 35.3,
+   "ceta_completo_pct": 27.1,
+   "lai_pct": 4.7,
+   "urgencia_pct": 22.4
+  },
+  "2": {
+   "episodios": 88,
+   "dias_mediana": 8.5,
+   "reingreso_pct": 22.7,
+   "alta_vol_pct": 12.5,
+   "ceta_completo_pct": 2.3,
+   "lai_pct": 50.0,
+   "urgencia_pct": 55.7
+  }
+ },
+ "pruebas_p": {
+  "Antecedentes legales": 0.0,
+  "Violencia intrafamiliar": 0.8646,
+  "Abuso sexual": 0.4241,
+  "Hospitalización previa TUS": 0.0,
+  "Rehabilitación previa": 0.1564,
+  "Intento suicida previo": 0.0003,
+  "Conducta autolesiva": 0.002,
+  "T. depresivo": 0.0,
+  "T. personalidad": 0.0104,
+  "T. bipolar": 0.0,
+  "Comorbilidad médica": 0.0378,
+  "Policonsumo": 1.0,
+  "Heteroagresión (1er ingreso)": 0.0,
+  "Alt. sensoperceptuales (1er ingreso)": 0.0,
+  "Ideas delirantes (1er ingreso)": 0.0,
+  "Extranjera": 0.5694,
+  "Reingreso 90 d (desenlace)": 0.1817,
+  "Comorbilidad psiquiátrica": 0.2218,
+  "Grupos de autoayuda": 0.9016,
+  "Atención previa SM": 0.0849,
+  "Edad": 0.1364,
+  "Edad inicio": 0.8589,
+  "Hijos": 0.0455,
+  "Programa CETA (1er ingreso)": 0.0,
+  "Inicio <15 años": 0.8184,
+  "Desempleada": 0.1206,
+  "Ingreso <500": 0.0,
+  "≥4 sustancias": 0.5239,
+  "Intentos suicidas": 0.0001,
+  "Episodios": 0.0022,
+  "Días de hospitalización (episodios)": 0.0987,
+  "Reingreso 90 d (episodios)": 0.139,
+  "Abandono (alta vol/SSAM/expulsión)": 0.0008
+ },
+ "mds": [
+  {
+   "x": 0.132,
+   "y": 0.328,
+   "c": 1
+  },
+  {
+   "x": -0.194,
+   "y": -0.013,
+   "c": 1
+  },
+  {
+   "x": -0.092,
+   "y": 0.126,
+   "c": 1
+  },
+  {
+   "x": 0.155,
+   "y": -0.283,
+   "c": 2
+  },
+  {
+   "x": 0.099,
+   "y": 0.294,
+   "c": 1
+  },
+  {
+   "x": -0.322,
+   "y": 0.221,
+   "c": 1
+  },
+  {
+   "x": -0.055,
+   "y": 0.343,
+   "c": 1
+  },
+  {
+   "x": -0.283,
+   "y": 0.161,
+   "c": 1
+  },
+  {
+   "x": 0.014,
+   "y": 0.306,
+   "c": 1
+  },
+  {
+   "x": 0.27,
+   "y": 0.21,
+   "c": 1
+  },
+  {
+   "x": 0.222,
+   "y": -0.174,
+   "c": 2
+  },
+  {
+   "x": 0.101,
+   "y": -0.325,
+   "c": 2
+  },
+  {
+   "x": 0.12,
+   "y": 0.359,
+   "c": 1
+  },
+  {
+   "x": -0.07,
+   "y": 0.204,
+   "c": 1
+  },
+  {
+   "x": 0.032,
+   "y": -0.371,
+   "c": 2
+  },
+  {
+   "x": 0.005,
+   "y": 0.085,
+   "c": 1
+  },
+  {
+   "x": 0.053,
+   "y": -0.267,
+   "c": 2
+  },
+  {
+   "x": -0.278,
+   "y": 0.216,
+   "c": 1
+  },
+  {
+   "x": -0.068,
+   "y": 0.181,
+   "c": 1
+  },
+  {
+   "x": 0.087,
+   "y": -0.09,
+   "c": 2
+  },
+  {
+   "x": -0.115,
+   "y": 0.339,
+   "c": 1
+  },
+  {
+   "x": -0.342,
+   "y": -0.023,
+   "c": 1
+  },
+  {
+   "x": 0.121,
+   "y": -0.271,
+   "c": 2
+  },
+  {
+   "x": 0.142,
+   "y": 0.204,
+   "c": 1
+  },
+  {
+   "x": 0.247,
+   "y": 0.117,
+   "c": 1
+  },
+  {
+   "x": -0.071,
+   "y": -0.238,
+   "c": 2
+  },
+  {
+   "x": 0.072,
+   "y": 0.221,
+   "c": 1
+  },
+  {
+   "x": -0.3,
+   "y": -0.02,
+   "c": 1
+  },
+  {
+   "x": 0.379,
+   "y": 0.057,
+   "c": 1
+  },
+  {
+   "x": -0.097,
+   "y": -0.099,
+   "c": 2
+  },
+  {
+   "x": 0.26,
+   "y": -0.22,
+   "c": 2
+  },
+  {
+   "x": -0.313,
+   "y": -0.188,
+   "c": 2
+  },
+  {
+   "x": -0.343,
+   "y": 0.18,
+   "c": 1
+  },
+  {
+   "x": -0.253,
+   "y": 0.152,
+   "c": 1
+  },
+  {
+   "x": 0.297,
+   "y": 0.12,
+   "c": 1
+  },
+  {
+   "x": -0.382,
+   "y": -0.22,
+   "c": 2
+  },
+  {
+   "x": 0.258,
+   "y": 0.317,
+   "c": 1
+  },
+  {
+   "x": -0.209,
+   "y": 0.091,
+   "c": 1
+  },
+  {
+   "x": -0.104,
+   "y": 0.246,
+   "c": 1
+  },
+  {
+   "x": 0.293,
+   "y": 0.226,
+   "c": 1
+  },
+  {
+   "x": 0.351,
+   "y": -0.07,
+   "c": 2
+  },
+  {
+   "x": -0.233,
+   "y": -0.055,
+   "c": 2
+  },
+  {
+   "x": 0.1,
+   "y": -0.237,
+   "c": 2
+  },
+  {
+   "x": -0.239,
+   "y": -0.198,
+   "c": 2
+  },
+  {
+   "x": 0.297,
+   "y": -0.086,
+   "c": 2
+  },
+  {
+   "x": -0.131,
+   "y": -0.151,
+   "c": 2
+  },
+  {
+   "x": 0.092,
+   "y": -0.209,
+   "c": 2
+  },
+  {
+   "x": -0.334,
+   "y": -0.194,
+   "c": 2
+  },
+  {
+   "x": 0.052,
+   "y": 0.26,
+   "c": 1
+  },
+  {
+   "x": 0.077,
+   "y": -0.28,
+   "c": 2
+  },
+  {
+   "x": 0.012,
+   "y": 0.36,
+   "c": 1
+  },
+  {
+   "x": -0.189,
+   "y": -0.295,
+   "c": 2
+  },
+  {
+   "x": 0.219,
+   "y": -0.153,
+   "c": 2
+  },
+  {
+   "x": -0.084,
+   "y": -0.008,
+   "c": 1
+  },
+  {
+   "x": 0.014,
+   "y": -0.237,
+   "c": 2
+  },
+  {
+   "x": -0.159,
+   "y": -0.058,
+   "c": 1
+  },
+  {
+   "x": -0.34,
+   "y": 0.3,
+   "c": 1
+  },
+  {
+   "x": 0.182,
+   "y": 0.325,
+   "c": 1
+  },
+  {
+   "x": 0.178,
+   "y": -0.225,
+   "c": 2
+  },
+  {
+   "x": 0.319,
+   "y": 0.066,
+   "c": 1
+  },
+  {
+   "x": 0.073,
+   "y": 0.103,
+   "c": 1
+  },
+  {
+   "x": 0.035,
+   "y": -0.302,
+   "c": 2
+  },
+  {
+   "x": 0.24,
+   "y": -0.137,
+   "c": 2
+  },
+  {
+   "x": 0.237,
+   "y": 0.223,
+   "c": 1
+  },
+  {
+   "x": 0.001,
+   "y": -0.305,
+   "c": 2
+  },
+  {
+   "x": -0.068,
+   "y": -0.208,
+   "c": 2
+  },
+  {
+   "x": -0.116,
+   "y": -0.275,
+   "c": 2
+  },
+  {
+   "x": 0.001,
+   "y": 0.009,
+   "c": 1
+  },
+  {
+   "x": -0.184,
+   "y": -0.31,
+   "c": 2
+  },
+  {
+   "x": -0.15,
+   "y": -0.245,
+   "c": 2
+  },
+  {
+   "x": 0.192,
+   "y": -0.158,
+   "c": 2
+  },
+  {
+   "x": 0.133,
+   "y": -0.261,
+   "c": 2
+  },
+  {
+   "x": 0.026,
+   "y": 0.241,
+   "c": 1
+  },
+  {
+   "x": 0.254,
+   "y": -0.108,
+   "c": 2
+  },
+  {
+   "x": 0.196,
+   "y": -0.041,
+   "c": 2
+  },
+  {
+   "x": 0.135,
+   "y": -0.115,
+   "c": 2
+  },
+  {
+   "x": -0.019,
+   "y": -0.008,
+   "c": 1
+  },
+  {
+   "x": 0.169,
+   "y": 0.191,
+   "c": 1
+  },
+  {
+   "x": 0.165,
+   "y": -0.306,
+   "c": 2
+  },
+  {
+   "x": 0.253,
+   "y": -0.2,
+   "c": 2
+  },
+  {
+   "x": 0.056,
+   "y": 0.284,
+   "c": 1
+  },
+  {
+   "x": -0.057,
+   "y": -0.3,
+   "c": 2
+  },
+  {
+   "x": 0.201,
+   "y": -0.179,
+   "c": 2
+  },
+  {
+   "x": -0.035,
+   "y": 0.101,
+   "c": 1
+  },
+  {
+   "x": 0.191,
+   "y": 0.107,
+   "c": 1
+  },
+  {
+   "x": -0.02,
+   "y": -0.342,
+   "c": 2
+  },
+  {
+   "x": -0.017,
+   "y": -0.295,
+   "c": 2
+  },
+  {
+   "x": 0.125,
+   "y": 0.104,
+   "c": 1
+  },
+  {
+   "x": 0.204,
+   "y": 0.181,
+   "c": 1
+  },
+  {
+   "x": 0.227,
+   "y": 0.036,
+   "c": 1
+  },
+  {
+   "x": 0.14,
+   "y": 0.158,
+   "c": 1
+  },
+  {
+   "x": 0.098,
+   "y": 0.227,
+   "c": 1
+  },
+  {
+   "x": -0.041,
+   "y": 0.154,
+   "c": 1
+  },
+  {
+   "x": 0.052,
+   "y": -0.332,
+   "c": 2
+  },
+  {
+   "x": 0.135,
+   "y": 0.248,
+   "c": 1
+  },
+  {
+   "x": -0.089,
+   "y": 0.057,
+   "c": 1
+  },
+  {
+   "x": -0.089,
+   "y": 0.093,
+   "c": 1
+  },
+  {
+   "x": -0.161,
+   "y": 0.157,
+   "c": 1
+  },
+  {
+   "x": -0.128,
+   "y": 0.315,
+   "c": 1
+  },
+  {
+   "x": -0.343,
+   "y": 0.027,
+   "c": 1
+  },
+  {
+   "x": 0.13,
+   "y": -0.387,
+   "c": 2
+  },
+  {
+   "x": 0.172,
+   "y": 0.07,
+   "c": 1
+  },
+  {
+   "x": 0.043,
+   "y": 0.213,
+   "c": 1
+  },
+  {
+   "x": -0.328,
+   "y": 0.099,
+   "c": 1
+  },
+  {
+   "x": 0.057,
+   "y": 0.333,
+   "c": 1
+  },
+  {
+   "x": -0.156,
+   "y": 0.255,
+   "c": 1
+  },
+  {
+   "x": -0.224,
+   "y": -0.178,
+   "c": 2
+  },
+  {
+   "x": -0.222,
+   "y": 0.189,
+   "c": 1
+  },
+  {
+   "x": -0.096,
+   "y": -0.377,
+   "c": 2
+  },
+  {
+   "x": 0.228,
+   "y": 0.397,
+   "c": 1
+  },
+  {
+   "x": -0.008,
+   "y": -0.415,
+   "c": 2
+  },
+  {
+   "x": -0.06,
+   "y": -0.407,
+   "c": 2
+  },
+  {
+   "x": -0.397,
+   "y": -0.148,
+   "c": 2
+  },
+  {
+   "x": 0.339,
+   "y": -0.178,
+   "c": 2
+  },
+  {
+   "x": -0.242,
+   "y": 0.265,
+   "c": 1
+  },
+  {
+   "x": -0.445,
+   "y": -0.077,
+   "c": 2
+  },
+  {
+   "x": -0.286,
+   "y": 0.089,
+   "c": 1
+  },
+  {
+   "x": -0.181,
+   "y": 0.314,
+   "c": 1
+  }
+ ],
+ "concordancia_pam_vs_jerarquico_ARI": 0.805,
+ "sensibilidad_variables": [
+  {
+   "conjunto": "Todas (26, reportado)",
+   "n_vars": 26,
+   "k": 2,
+   "silueta": 0.244,
+   "ARI_vs_reportado": 1.0
+  },
+  {
+   "conjunto": "Sin nominales (droga, convivencia, ocupación, motivo)",
+   "n_vars": 22,
+   "k": 2,
+   "silueta": 0.288,
+   "ARI_vs_reportado": 0.966
+  },
+  {
+   "conjunto": "Solo clínicas (sin sociodemográficas)",
+   "n_vars": 19,
+   "k": 2,
+   "silueta": 0.274,
+   "ARI_vs_reportado": 0.716
+  },
+  {
+   "conjunto": "Solo sociodemográficas",
+   "n_vars": 8,
+   "k": 2,
+   "silueta": 0.233,
+   "ARI_vs_reportado": 0.288
+  },
+  {
+   "conjunto": "Sin síntomas del 1er ingreso",
+   "n_vars": 23,
+   "k": 2,
+   "silueta": 0.148,
+   "ARI_vs_reportado": 0.388
+  },
+  {
+   "conjunto": "Núcleo de 10 variables discriminantes",
+   "n_vars": 10,
+   "k": 2,
+   "silueta": 0.444,
+   "ARI_vs_reportado": 0.868
+  }
+ ],
+ "episodios_por_cluster": {
+  "1": 85,
+  "2": 88
+ },
+ "reingreso_pacientes": {
+  "1": 9,
+  "2": 13
+ },
+ "reingreso_episodios": {
+  "1": 11,
+  "2": 20
+ }
+}

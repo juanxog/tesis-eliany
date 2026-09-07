@@ -1,0 +1,3560 @@
+{
+ "pac_cat": {
+  "grupo_edad": [
+   {
+    "cat": "18–24",
+    "n": 32,
+    "pct": 27.1
+   },
+   {
+    "cat": "25–34",
+    "n": 38,
+    "pct": 32.2
+   },
+   {
+    "cat": "35–44",
+    "n": 23,
+    "pct": 19.5
+   },
+   {
+    "cat": "45–54",
+    "n": 17,
+    "pct": 14.4
+   },
+   {
+    "cat": "55–64",
+    "n": 5,
+    "pct": 4.2
+   },
+   {
+    "cat": "≥65",
+    "n": 3,
+    "pct": 2.5
+   }
+  ],
+  "nivel_educativo": [
+   {
+    "cat": "Primaria",
+    "n": 26,
+    "pct": 22.0
+   },
+   {
+    "cat": "Secundaria",
+    "n": 60,
+    "pct": 50.8
+   },
+   {
+    "cat": "Técnica",
+    "n": 7,
+    "pct": 5.9
+   },
+   {
+    "cat": "Universitaria",
+    "n": 23,
+    "pct": 19.5
+   },
+   {
+    "cat": "Posgrado",
+    "n": 2,
+    "pct": 1.7
+   }
+  ],
+  "estado_civil": [
+   {
+    "cat": "Soltera",
+    "n": 79,
+    "pct": 66.9
+   },
+   {
+    "cat": "Unión libre",
+    "n": 17,
+    "pct": 14.4
+   },
+   {
+    "cat": "Separada/Divorciada",
+    "n": 14,
+    "pct": 11.9
+   },
+   {
+    "cat": "Casada",
+    "n": 5,
+    "pct": 4.2
+   },
+   {
+    "cat": "Viuda",
+    "n": 3,
+    "pct": 2.5
+   }
+  ],
+  "nacionalidad": [
+   {
+    "cat": "Panameña",
+    "n": 96,
+    "pct": 81.4
+   },
+   {
+    "cat": "Colombiana",
+    "n": 14,
+    "pct": 11.9
+   },
+   {
+    "cat": "Venezolana",
+    "n": 3,
+    "pct": 2.5
+   },
+   {
+    "cat": "Estadounidense",
+    "n": 2,
+    "pct": 1.7
+   },
+   {
+    "cat": "Puertorriqueña",
+    "n": 1,
+    "pct": 0.8
+   },
+   {
+    "cat": "Italiana",
+    "n": 1,
+    "pct": 0.8
+   },
+   {
+    "cat": "Búlgara",
+    "n": 1,
+    "pct": 0.8
+   }
+  ],
+  "provincia": [
+   {
+    "cat": "Panamá",
+    "n": 77,
+    "pct": 65.3
+   },
+   {
+    "cat": "No aplica (extranjera)",
+    "n": 22,
+    "pct": 18.6
+   },
+   {
+    "cat": "Colón",
+    "n": 5,
+    "pct": 4.2
+   },
+   {
+    "cat": "Veraguas",
+    "n": 4,
+    "pct": 3.4
+   },
+   {
+    "cat": "Bocas del Toro",
+    "n": 3,
+    "pct": 2.5
+   },
+   {
+    "cat": "Chiriquí",
+    "n": 2,
+    "pct": 1.7
+   },
+   {
+    "cat": "Darién",
+    "n": 2,
+    "pct": 1.7
+   },
+   {
+    "cat": "Coclé",
+    "n": 1,
+    "pct": 0.8
+   },
+   {
+    "cat": "Herrera",
+    "n": 1,
+    "pct": 0.8
+   },
+   {
+    "cat": "Los Santos",
+    "n": 1,
+    "pct": 0.8
+   }
+  ],
+  "ocupacion": [
+   {
+    "cat": "Desempleada",
+    "n": 76,
+    "pct": 64.4
+   },
+   {
+    "cat": "Empleo formal",
+    "n": 25,
+    "pct": 21.2
+   },
+   {
+    "cat": "Empleo informal",
+    "n": 13,
+    "pct": 11.0
+   },
+   {
+    "cat": "Estudiante",
+    "n": 3,
+    "pct": 2.5
+   },
+   {
+    "cat": "Jubilada / Pensionada",
+    "n": 1,
+    "pct": 0.8
+   }
+  ],
+  "convivencia": [
+   {
+    "cat": "Familia extensa",
+    "n": 36,
+    "pct": 30.5
+   },
+   {
+    "cat": "Familia nuclear",
+    "n": 34,
+    "pct": 28.8
+   },
+   {
+    "cat": "Sola",
+    "n": 20,
+    "pct": 16.9
+   },
+   {
+    "cat": "Con pareja",
+    "n": 10,
+    "pct": 8.5
+   },
+   {
+    "cat": "Amistades u otros",
+    "n": 9,
+    "pct": 7.6
+   },
+   {
+    "cat": "Situación de calle",
+    "n": 5,
+    "pct": 4.2
+   },
+   {
+    "cat": "Privada de libertad",
+    "n": 4,
+    "pct": 3.4
+   }
+  ],
+  "ingreso_familiar": [
+   {
+    "cat": "<500",
+    "n": 39,
+    "pct": 33.1
+   },
+   {
+    "cat": "500–1000",
+    "n": 32,
+    "pct": 27.1
+   },
+   {
+    "cat": "1001–2000",
+    "n": 20,
+    "pct": 16.9
+   },
+   {
+    "cat": ">2000",
+    "n": 26,
+    "pct": 22.0
+   },
+   {
+    "cat": "No especificado",
+    "n": 1,
+    "pct": 0.8
+   }
+  ],
+  "religion": [
+   {
+    "cat": "Católica",
+    "n": 41,
+    "pct": 34.7
+   },
+   {
+    "cat": "No practicante",
+    "n": 38,
+    "pct": 32.2
+   },
+   {
+    "cat": "Cristiana evangélica",
+    "n": 32,
+    "pct": 27.1
+   },
+   {
+    "cat": "Adventista",
+    "n": 3,
+    "pct": 2.5
+   },
+   {
+    "cat": "Otra",
+    "n": 3,
+    "pct": 2.5
+   },
+   {
+    "cat": "No especificado",
+    "n": 1,
+    "pct": 0.8
+   }
+  ],
+  "antec_legales": [
+   {
+    "cat": "Sí",
+    "n": 61,
+    "pct": 51.7
+   },
+   {
+    "cat": "No",
+    "n": 57,
+    "pct": 48.3
+   }
+  ],
+  "violencia_intrafamiliar": [
+   {
+    "cat": "Sí",
+    "n": 95,
+    "pct": 80.5
+   },
+   {
+    "cat": "No",
+    "n": 23,
+    "pct": 19.5
+   }
+  ],
+  "abuso_sexual": [
+   {
+    "cat": "Sí",
+    "n": 65,
+    "pct": 55.1
+   },
+   {
+    "cat": "No",
+    "n": 53,
+    "pct": 44.9
+   }
+  ],
+  "algun_abuso": [
+   {
+    "cat": "Sí",
+    "n": 100,
+    "pct": 84.7
+   },
+   {
+    "cat": "No",
+    "n": 18,
+    "pct": 15.3
+   }
+  ],
+  "atencion_previa_sm": [
+   {
+    "cat": "Sí",
+    "n": 109,
+    "pct": 92.4
+   },
+   {
+    "cat": "No",
+    "n": 9,
+    "pct": 7.6
+   }
+  ],
+  "hosp_previa_tus": [
+   {
+    "cat": "No",
+    "n": 64,
+    "pct": 54.2
+   },
+   {
+    "cat": "Sí",
+    "n": 54,
+    "pct": 45.8
+   }
+  ],
+  "rehab_previa": [
+   {
+    "cat": "No",
+    "n": 86,
+    "pct": 72.9
+   },
+   {
+    "cat": "Sí",
+    "n": 32,
+    "pct": 27.1
+   }
+  ],
+  "grupos_autoayuda": [
+   {
+    "cat": "No",
+    "n": 79,
+    "pct": 66.9
+   },
+   {
+    "cat": "Sí",
+    "n": 39,
+    "pct": 33.1
+   }
+  ],
+  "intento_suicida_previo": [
+   {
+    "cat": "Sí",
+    "n": 64,
+    "pct": 54.2
+   },
+   {
+    "cat": "No",
+    "n": 54,
+    "pct": 45.8
+   }
+  ],
+  "conducta_autolesiva": [
+   {
+    "cat": "No",
+    "n": 64,
+    "pct": 54.2
+   },
+   {
+    "cat": "Sí",
+    "n": 54,
+    "pct": 45.8
+   }
+  ],
+  "conducta_parasuicida": [
+   {
+    "cat": "Sí",
+    "n": 76,
+    "pct": 64.4
+   },
+   {
+    "cat": "No",
+    "n": 42,
+    "pct": 35.6
+   }
+  ],
+  "comorb_psiq": [
+   {
+    "cat": "Sí",
+    "n": 85,
+    "pct": 72.0
+   },
+   {
+    "cat": "No",
+    "n": 33,
+    "pct": 28.0
+   }
+  ],
+  "n_comorb_psiq": [
+   {
+    "cat": "0",
+    "n": 32,
+    "pct": 27.1
+   },
+   {
+    "cat": "1",
+    "n": 49,
+    "pct": 41.5
+   },
+   {
+    "cat": "2–3",
+    "n": 37,
+    "pct": 31.4
+   }
+  ],
+  "comorb_medica": [
+   {
+    "cat": "No",
+    "n": 68,
+    "pct": 57.6
+   },
+   {
+    "cat": "Sí",
+    "n": 50,
+    "pct": 42.4
+   }
+  ],
+  "n_sustancias": [
+   {
+    "cat": "1",
+    "n": 22,
+    "pct": 18.6
+   },
+   {
+    "cat": "2–3",
+    "n": 51,
+    "pct": 43.2
+   },
+   {
+    "cat": "4–5",
+    "n": 34,
+    "pct": 28.8
+   },
+   {
+    "cat": "≥6",
+    "n": 11,
+    "pct": 9.3
+   }
+  ],
+  "droga_eleccion": [
+   {
+    "cat": "Cocaína",
+    "n": 41,
+    "pct": 34.7
+   },
+   {
+    "cat": "Alcohol",
+    "n": 26,
+    "pct": 22.0
+   },
+   {
+    "cat": "Cannabis",
+    "n": 21,
+    "pct": 17.8
+   },
+   {
+    "cat": "Piedra/crack",
+    "n": 8,
+    "pct": 6.8
+   },
+   {
+    "cat": "Nicotina",
+    "n": 7,
+    "pct": 5.9
+   },
+   {
+    "cat": "Benzodiacepinas",
+    "n": 6,
+    "pct": 5.1
+   },
+   {
+    "cat": "2C-B (tusi)",
+    "n": 4,
+    "pct": 3.4
+   },
+   {
+    "cat": "Metanfetamina",
+    "n": 3,
+    "pct": 2.5
+   },
+   {
+    "cat": "Opioides",
+    "n": 2,
+    "pct": 1.7
+   }
+  ],
+  "policonsumo": [
+   {
+    "cat": "Sí",
+    "n": 95,
+    "pct": 80.5
+   },
+   {
+    "cat": "No",
+    "n": 23,
+    "pct": 19.5
+   }
+  ],
+  "inicio_temprano_<15": [
+   {
+    "cat": "No",
+    "n": 61,
+    "pct": 51.7
+   },
+   {
+    "cat": "Sí",
+    "n": 57,
+    "pct": 48.3
+   }
+  ],
+  "n_episodios": [
+   {
+    "cat": "1",
+    "n": 83,
+    "pct": 70.3
+   },
+   {
+    "cat": "2",
+    "n": 25,
+    "pct": 21.2
+   },
+   {
+    "cat": "3",
+    "n": 5,
+    "pct": 4.2
+   },
+   {
+    "cat": "5",
+    "n": 3,
+    "pct": 2.5
+   },
+   {
+    "cat": "6",
+    "n": 1,
+    "pct": 0.8
+   },
+   {
+    "cat": "4",
+    "n": 1,
+    "pct": 0.8
+   }
+  ],
+  "reingreso_alguna_vez": [
+   {
+    "cat": "No",
+    "n": 96,
+    "pct": 81.4
+   },
+   {
+    "cat": "Sí",
+    "n": 22,
+    "pct": 18.6
+   }
+  ]
+ },
+ "pac_num": {
+  "edad": {
+   "n": 118,
+   "media": 34.4,
+   "de": 12.0,
+   "mediana": 32.0,
+   "q1": 24.0,
+   "q3": 42.0,
+   "min": 19.0,
+   "max": 69.0
+  },
+  "n_hijos": {
+   "n": 118,
+   "media": 1.2,
+   "de": 1.4,
+   "mediana": 1.0,
+   "q1": 0.0,
+   "q3": 2.0,
+   "min": 0.0,
+   "max": 6.0
+  },
+  "n_intentos_suicidas": {
+   "n": 118,
+   "media": 1.4,
+   "de": 2.3,
+   "mediana": 1.0,
+   "q1": 0.0,
+   "q3": 2.0,
+   "min": 0.0,
+   "max": 16.0
+  },
+  "edad_inicio_consumo": {
+   "n": 118,
+   "media": 15.3,
+   "de": 4.3,
+   "mediana": 15.0,
+   "q1": 13.0,
+   "q3": 17.0,
+   "min": 9.0,
+   "max": 44.0
+  },
+  "anios_consumo": {
+   "n": 118,
+   "media": 19.1,
+   "de": 11.5,
+   "mediana": 16.5,
+   "q1": 10.0,
+   "q3": 27.0,
+   "min": -1.0,
+   "max": 53.0
+  },
+  "n_comorb_psiq_num": {
+   "n": 118,
+   "media": 1.1,
+   "de": 0.9,
+   "mediana": 1.0,
+   "q1": 0.0,
+   "q3": 2.0,
+   "min": 0.0,
+   "max": 3.0
+  }
+ },
+ "pac_comorb_tipo": [
+  {
+   "cat": "Trastornos depresivos",
+   "n": 42,
+   "pct": 35.6
+  },
+  {
+   "cat": "Trastornos de ansiedad",
+   "n": 15,
+   "pct": 12.7
+  },
+  {
+   "cat": "Trastorno de la personalidad",
+   "n": 36,
+   "pct": 30.5
+  },
+  {
+   "cat": "Trastorno afectivo bipolar",
+   "n": 28,
+   "pct": 23.7
+  },
+  {
+   "cat": "Trastorno esquizoafectivo",
+   "n": 3,
+   "pct": 2.5
+  },
+  {
+   "cat": "TDAH",
+   "n": 4,
+   "pct": 3.4
+  },
+  {
+   "cat": "Discapacidad intelectual",
+   "n": 1,
+   "pct": 0.8
+  },
+  {
+   "cat": "Otros",
+   "n": 6,
+   "pct": 5.1
+  }
+ ],
+ "epi_cat": {
+  "motivo_hosp": [
+   {
+    "cat": "Crisis",
+    "n": 135,
+    "pct": 78.0
+   },
+   {
+    "cat": "Programa CETA",
+    "n": 38,
+    "pct": 22.0
+   }
+  ],
+  "sx_heteroagresion": [
+   {
+    "cat": "Sí",
+    "n": 88,
+    "pct": 50.9
+   },
+   {
+    "cat": "No",
+    "n": 85,
+    "pct": 49.1
+   }
+  ],
+  "sx_sensoperceptual": [
+   {
+    "cat": "No",
+    "n": 93,
+    "pct": 53.8
+   },
+   {
+    "cat": "Sí",
+    "n": 80,
+    "pct": 46.2
+   }
+  ],
+  "sx_delirante": [
+   {
+    "cat": "No",
+    "n": 96,
+    "pct": 55.5
+   },
+   {
+    "cat": "Sí",
+    "n": 77,
+    "pct": 44.5
+   }
+  ],
+  "sx_insomnio": [
+   {
+    "cat": "Sí",
+    "n": 133,
+    "pct": 76.9
+   },
+   {
+    "cat": "No",
+    "n": 40,
+    "pct": 23.1
+   }
+  ],
+  "sx_humor": [
+   {
+    "cat": "Sí",
+    "n": 163,
+    "pct": 94.2
+   },
+   {
+    "cat": "No",
+    "n": 10,
+    "pct": 5.8
+   }
+  ],
+  "sx_psicotico": [
+   {
+    "cat": "Sí",
+    "n": 88,
+    "pct": 50.9
+   },
+   {
+    "cat": "No",
+    "n": 85,
+    "pct": 49.1
+   }
+  ],
+  "ultimo_consumo": [
+   {
+    "cat": "<24 h",
+    "n": 108,
+    "pct": 62.4
+   },
+   {
+    "cat": "≤1 semana",
+    "n": 35,
+    "pct": 20.2
+   },
+   {
+    "cat": "≤1 mes",
+    "n": 12,
+    "pct": 6.9
+   },
+   {
+    "cat": ">1 mes",
+    "n": 3,
+    "pct": 1.7
+   },
+   {
+    "cat": "No especificado",
+    "n": 15,
+    "pct": 8.7
+   }
+  ],
+  "metabolitos_positivos": [
+   {
+    "cat": "Sí",
+    "n": 76,
+    "pct": 43.9
+   },
+   {
+    "cat": "No",
+    "n": 50,
+    "pct": 28.9
+   },
+   {
+    "cat": "No se realizó",
+    "n": 47,
+    "pct": 27.2
+   }
+  ],
+  "tx_antipsicotico": [
+   {
+    "cat": "Sí",
+    "n": 147,
+    "pct": 85.0
+   },
+   {
+    "cat": "No",
+    "n": 26,
+    "pct": 15.0
+   }
+  ],
+  "tx_benzodiacepina": [
+   {
+    "cat": "Sí",
+    "n": 148,
+    "pct": 85.5
+   },
+   {
+    "cat": "No",
+    "n": 25,
+    "pct": 14.5
+   }
+  ],
+  "tx_estabilizador": [
+   {
+    "cat": "No",
+    "n": 87,
+    "pct": 50.3
+   },
+   {
+    "cat": "Sí",
+    "n": 86,
+    "pct": 49.7
+   }
+  ],
+  "tx_antidepresivo": [
+   {
+    "cat": "No",
+    "n": 122,
+    "pct": 70.5
+   },
+   {
+    "cat": "Sí",
+    "n": 51,
+    "pct": 29.5
+   }
+  ],
+  "tx_antiextrapiramidal": [
+   {
+    "cat": "Sí",
+    "n": 92,
+    "pct": 53.2
+   },
+   {
+    "cat": "No",
+    "n": 81,
+    "pct": 46.8
+   }
+  ],
+  "tx_lai": [
+   {
+    "cat": "No",
+    "n": 125,
+    "pct": 72.3
+   },
+   {
+    "cat": "Sí",
+    "n": 48,
+    "pct": 27.7
+   }
+  ],
+  "tx_lai_tipo": [
+   {
+    "cat": "No aplica",
+    "n": 126,
+    "pct": 72.8
+   },
+   {
+    "cat": "Flufenazina decanoato",
+    "n": 44,
+    "pct": 25.4
+   },
+   {
+    "cat": "Paliperidona LAI",
+    "n": 2,
+    "pct": 1.2
+   },
+   {
+    "cat": "Risperidona LAI",
+    "n": 1,
+    "pct": 0.6
+   }
+  ],
+  "tx_med_urgencia": [
+   {
+    "cat": "No",
+    "n": 105,
+    "pct": 60.7
+   },
+   {
+    "cat": "Sí",
+    "n": 68,
+    "pct": 39.3
+   }
+  ],
+  "ic_trabajo_social": [
+   {
+    "cat": "Sí",
+    "n": 171,
+    "pct": 98.8
+   },
+   {
+    "cat": "No",
+    "n": 2,
+    "pct": 1.2
+   }
+  ],
+  "ic_psicologia": [
+   {
+    "cat": "Sí",
+    "n": 146,
+    "pct": 84.4
+   },
+   {
+    "cat": "No",
+    "n": 27,
+    "pct": 15.6
+   }
+  ],
+  "ic_psiq_adicciones": [
+   {
+    "cat": "Sí",
+    "n": 114,
+    "pct": 65.9
+   },
+   {
+    "cat": "No",
+    "n": 59,
+    "pct": 34.1
+   }
+  ],
+  "ekg": [
+   {
+    "cat": "Sí",
+    "n": 138,
+    "pct": 79.8
+   },
+   {
+    "cat": "No",
+    "n": 35,
+    "pct": 20.2
+   }
+  ],
+  "eeg": [
+   {
+    "cat": "Sí",
+    "n": 137,
+    "pct": 79.2
+   },
+   {
+    "cat": "No",
+    "n": 36,
+    "pct": 20.8
+   }
+  ],
+  "laboratorios": [
+   {
+    "cat": "Sí",
+    "n": 169,
+    "pct": 97.7
+   },
+   {
+    "cat": "No",
+    "n": 3,
+    "pct": 1.7
+   },
+   {
+    "cat": "nan",
+    "n": 1,
+    "pct": 0.6
+   }
+  ],
+  "estancia_cat": [
+   {
+    "cat": "1–7",
+    "n": 68,
+    "pct": 39.3
+   },
+   {
+    "cat": "8–14",
+    "n": 50,
+    "pct": 28.9
+   },
+   {
+    "cat": "15–21",
+    "n": 16,
+    "pct": 9.2
+   },
+   {
+    "cat": "22–30",
+    "n": 24,
+    "pct": 13.9
+   },
+   {
+    "cat": ">30",
+    "n": 15,
+    "pct": 8.7
+   }
+  ],
+  "dx_egreso_cat": [
+   {
+    "cat": "F19",
+    "n": 118,
+    "pct": 68.2
+   },
+   {
+    "cat": "F10",
+    "n": 22,
+    "pct": 12.7
+   },
+   {
+    "cat": "F12",
+    "n": 12,
+    "pct": 6.9
+   },
+   {
+    "cat": "F17",
+    "n": 9,
+    "pct": 5.2
+   },
+   {
+    "cat": "F13",
+    "n": 6,
+    "pct": 3.5
+   },
+   {
+    "cat": "F14",
+    "n": 2,
+    "pct": 1.2
+   },
+   {
+    "cat": "F11",
+    "n": 2,
+    "pct": 1.2
+   },
+   {
+    "cat": "F16",
+    "n": 1,
+    "pct": 0.6
+   },
+   {
+    "cat": "nan",
+    "n": 1,
+    "pct": 0.6
+   }
+  ],
+  "motivo_egreso": [
+   {
+    "cat": "Mejoría",
+    "n": 103,
+    "pct": 59.5
+   },
+   {
+    "cat": "Alta voluntaria",
+    "n": 29,
+    "pct": 16.8
+   },
+   {
+    "cat": "Completó programa CETA",
+    "n": 25,
+    "pct": 14.5
+   },
+   {
+    "cat": "SSAM",
+    "n": 8,
+    "pct": 4.6
+   },
+   {
+    "cat": "Expulsión de CETA",
+    "n": 4,
+    "pct": 2.3
+   },
+   {
+    "cat": "Traslado a otro hospital",
+    "n": 4,
+    "pct": 2.3
+   }
+  ],
+  "reingreso_90d": [
+   {
+    "cat": "No",
+    "n": 142,
+    "pct": 82.1
+   },
+   {
+    "cat": "Sí",
+    "n": 31,
+    "pct": 17.9
+   }
+  ]
+ },
+ "epi_num": {
+  "dias_hosp": {
+   "n": 173,
+   "media": 13.3,
+   "de": 10.8,
+   "mediana": 9.0,
+   "q1": 6.0,
+   "q3": 19.0,
+   "min": 1.0,
+   "max": 47.0
+  },
+  "n_sintomas_ingreso": {
+   "n": 173,
+   "media": 3.1,
+   "de": 1.6,
+   "mediana": 3.0,
+   "q1": 2.0,
+   "q3": 5.0,
+   "min": 0.0,
+   "max": 5.0
+  },
+  "n_farmacos": {
+   "n": 173,
+   "media": 3.7,
+   "de": 1.7,
+   "mediana": 4.0,
+   "q1": 2.0,
+   "q3": 5.0,
+   "min": 0.0,
+   "max": 7.0
+  }
+ },
+ "epi_sintomas": [
+  {
+   "cat": "Alteración del humor/afecto",
+   "n": 163,
+   "pct": 94.2
+  },
+  {
+   "cat": "Insomnio",
+   "n": 133,
+   "pct": 76.9
+  },
+  {
+   "cat": "Heteroagresión",
+   "n": 88,
+   "pct": 50.9
+  },
+  {
+   "cat": "Alteraciones sensoperceptuales",
+   "n": 80,
+   "pct": 46.2
+  },
+  {
+   "cat": "Ideas delirantes",
+   "n": 77,
+   "pct": 44.5
+  }
+ ],
+ "epi_tx": [
+  {
+   "cat": "Benzodiacepinas",
+   "n": 148,
+   "pct": 85.5
+  },
+  {
+   "cat": "Antipsicóticos",
+   "n": 147,
+   "pct": 85.0
+  },
+  {
+   "cat": "Antiextrapiramidales",
+   "n": 92,
+   "pct": 53.2
+  },
+  {
+   "cat": "Estabilizadores del ánimo",
+   "n": 86,
+   "pct": 49.7
+  },
+  {
+   "cat": "Medicación de urgencia",
+   "n": 68,
+   "pct": 39.3
+  },
+  {
+   "cat": "Antidepresivos",
+   "n": 51,
+   "pct": 29.5
+  },
+  {
+   "cat": "Antipsicótico LAI",
+   "n": 48,
+   "pct": 27.7
+  }
+ ],
+ "biv_protocolo": {
+  "A_policonsumo_sintomas": [
+   {
+    "x": "Policonsumo activo",
+    "y": "Alteración del humor/afecto",
+    "tabla": [
+     [
+      127,
+      8
+     ],
+     [
+      36,
+      2
+     ]
+    ],
+    "pct_exp": 94.1,
+    "pct_noexp": 94.7,
+    "OR": 0.88,
+    "IC_lo": 0.18,
+    "IC_hi": 4.34,
+    "p": 1.0,
+    "prueba": "Fisher",
+    "n": 173
+   },
+   {
+    "x": "Policonsumo activo",
+    "y": "Insomnio",
+    "tabla": [
+     [
+      105,
+      30
+     ],
+     [
+      28,
+      10
+     ]
+    ],
+    "pct_exp": 77.8,
+    "pct_noexp": 73.7,
+    "OR": 1.25,
+    "IC_lo": 0.55,
+    "IC_hi": 2.86,
+    "p": 0.597,
+    "prueba": "χ²",
+    "n": 173
+   },
+   {
+    "x": "Policonsumo activo",
+    "y": "Heteroagresión",
+    "tabla": [
+     [
+      72,
+      63
+     ],
+     [
+      16,
+      22
+     ]
+    ],
+    "pct_exp": 53.3,
+    "pct_noexp": 42.1,
+    "OR": 1.57,
+    "IC_lo": 0.76,
+    "IC_hi": 3.25,
+    "p": 0.2213,
+    "prueba": "χ²",
+    "n": 173
+   },
+   {
+    "x": "Policonsumo activo",
+    "y": "Alteraciones sensoperceptuales",
+    "tabla": [
+     [
+      66,
+      69
+     ],
+     [
+      14,
+      24
+     ]
+    ],
+    "pct_exp": 48.9,
+    "pct_noexp": 36.8,
+    "OR": 1.64,
+    "IC_lo": 0.78,
+    "IC_hi": 3.44,
+    "p": 0.1883,
+    "prueba": "χ²",
+    "n": 173
+   },
+   {
+    "x": "Policonsumo activo",
+    "y": "Ideas delirantes",
+    "tabla": [
+     [
+      60,
+      75
+     ],
+     [
+      17,
+      21
+     ]
+    ],
+    "pct_exp": 44.4,
+    "pct_noexp": 44.7,
+    "OR": 0.99,
+    "IC_lo": 0.48,
+    "IC_hi": 2.04,
+    "p": 0.9744,
+    "prueba": "χ²",
+    "n": 173
+   }
+  ],
+  "BC_vulnerabilidad": [
+   {
+    "x": "Comorbilidad psiquiátrica",
+    "y": "Conducta parasuicida",
+    "tabla": [
+     [
+      60,
+      25
+     ],
+     [
+      16,
+      17
+     ]
+    ],
+    "pct_exp": 70.6,
+    "pct_noexp": 48.5,
+    "OR": 2.55,
+    "IC_lo": 1.12,
+    "IC_hi": 5.83,
+    "p": 0.0244,
+    "prueba": "χ²",
+    "n": 118
+   },
+   {
+    "x": "Trastorno depresivo",
+    "y": "Intento suicida previo",
+    "tabla": [
+     [
+      35,
+      7
+     ],
+     [
+      29,
+      47
+     ]
+    ],
+    "pct_exp": 83.3,
+    "pct_noexp": 38.2,
+    "OR": 8.1,
+    "IC_lo": 3.18,
+    "IC_hi": 20.63,
+    "p": 0.0,
+    "prueba": "χ²",
+    "n": 118
+   },
+   {
+    "x": "Trastorno depresivo",
+    "y": "Conducta autolesiva",
+    "tabla": [
+     [
+      31,
+      11
+     ],
+     [
+      23,
+      53
+     ]
+    ],
+    "pct_exp": 73.8,
+    "pct_noexp": 30.3,
+    "OR": 6.49,
+    "IC_lo": 2.79,
+    "IC_hi": 15.11,
+    "p": 0.0,
+    "prueba": "χ²",
+    "n": 118
+   },
+   {
+    "x": "Trastorno de personalidad",
+    "y": "Conducta parasuicida",
+    "tabla": [
+     [
+      30,
+      6
+     ],
+     [
+      46,
+      36
+     ]
+    ],
+    "pct_exp": 83.3,
+    "pct_noexp": 56.1,
+    "OR": 3.91,
+    "IC_lo": 1.47,
+    "IC_hi": 10.42,
+    "p": 0.0044,
+    "prueba": "χ²",
+    "n": 118
+   },
+   {
+    "x": "Violencia o abuso",
+    "y": "Comorbilidad psiquiátrica",
+    "tabla": [
+     [
+      72,
+      28
+     ],
+     [
+      13,
+      5
+     ]
+    ],
+    "pct_exp": 72.0,
+    "pct_noexp": 72.2,
+    "OR": 0.99,
+    "IC_lo": 0.32,
+    "IC_hi": 3.03,
+    "p": 0.9846,
+    "prueba": "χ²",
+    "n": 118
+   },
+   {
+    "x": "Violencia o abuso",
+    "y": "Conducta parasuicida",
+    "tabla": [
+     [
+      69,
+      31
+     ],
+     [
+      7,
+      11
+     ]
+    ],
+    "pct_exp": 69.0,
+    "pct_noexp": 38.9,
+    "OR": 3.5,
+    "IC_lo": 1.24,
+    "IC_hi": 9.88,
+    "p": 0.014,
+    "prueba": "χ²",
+    "n": 118
+   },
+   {
+    "x": "Violencia intrafamiliar",
+    "y": "Conducta parasuicida",
+    "tabla": [
+     [
+      67,
+      28
+     ],
+     [
+      9,
+      14
+     ]
+    ],
+    "pct_exp": 70.5,
+    "pct_noexp": 39.1,
+    "OR": 3.72,
+    "IC_lo": 1.44,
+    "IC_hi": 9.59,
+    "p": 0.0048,
+    "prueba": "χ²",
+    "n": 118
+   },
+   {
+    "x": "Abuso sexual",
+    "y": "Conducta parasuicida",
+    "tabla": [
+     [
+      49,
+      16
+     ],
+     [
+      27,
+      26
+     ]
+    ],
+    "pct_exp": 75.4,
+    "pct_noexp": 50.9,
+    "OR": 2.95,
+    "IC_lo": 1.35,
+    "IC_hi": 6.43,
+    "p": 0.0058,
+    "prueba": "χ²",
+    "n": 118
+   }
+  ],
+  "D_reingreso_episodio": [
+   {
+    "x": "Comorbilidad psiquiátrica",
+    "y": "Reingreso 90 d",
+    "tabla": [
+     [
+      20,
+      102
+     ],
+     [
+      11,
+      40
+     ]
+    ],
+    "pct_exp": 16.4,
+    "pct_noexp": 21.6,
+    "OR": 0.71,
+    "IC_lo": 0.31,
+    "IC_hi": 1.62,
+    "p": 0.4184,
+    "prueba": "χ²",
+    "n": 173
+   },
+   {
+    "x": "Hospitalización previa por TUS",
+    "y": "Reingreso 90 d",
+    "tabla": [
+     [
+      18,
+      69
+     ],
+     [
+      13,
+      73
+     ]
+    ],
+    "pct_exp": 20.7,
+    "pct_noexp": 15.1,
+    "OR": 1.46,
+    "IC_lo": 0.67,
+    "IC_hi": 3.21,
+    "p": 0.3392,
+    "prueba": "χ²",
+    "n": 173
+   },
+   {
+    "x": "Trastornos depresivos",
+    "y": "Reingreso 90 d",
+    "tabla": [
+     [
+      6,
+      47
+     ],
+     [
+      25,
+      95
+     ]
+    ],
+    "pct_exp": 11.3,
+    "pct_noexp": 20.8,
+    "OR": 0.49,
+    "IC_lo": 0.19,
+    "IC_hi": 1.26,
+    "p": 0.1326,
+    "prueba": "χ²",
+    "n": 173
+   },
+   {
+    "x": "Trastornos de ansiedad",
+    "y": "Reingreso 90 d",
+    "tabla": [
+     [
+      1,
+      16
+     ],
+     [
+      30,
+      126
+     ]
+    ],
+    "pct_exp": 5.9,
+    "pct_noexp": 19.2,
+    "OR": 0.26,
+    "IC_lo": 0.03,
+    "IC_hi": 2.06,
+    "p": 0.3147,
+    "prueba": "Fisher",
+    "n": 173
+   },
+   {
+    "x": "Trastorno de la personalidad",
+    "y": "Reingreso 90 d",
+    "tabla": [
+     [
+      3,
+      38
+     ],
+     [
+      28,
+      104
+     ]
+    ],
+    "pct_exp": 7.3,
+    "pct_noexp": 21.2,
+    "OR": 0.29,
+    "IC_lo": 0.08,
+    "IC_hi": 1.02,
+    "p": 0.0427,
+    "prueba": "χ²",
+    "n": 173
+   },
+   {
+    "x": "Trastorno afectivo bipolar",
+    "y": "Reingreso 90 d",
+    "tabla": [
+     [
+      17,
+      40
+     ],
+     [
+      14,
+      102
+     ]
+    ],
+    "pct_exp": 29.8,
+    "pct_noexp": 12.1,
+    "OR": 3.1,
+    "IC_lo": 1.4,
+    "IC_hi": 6.87,
+    "p": 0.0042,
+    "prueba": "χ²",
+    "n": 173
+   },
+   {
+    "x": "Trastorno esquizoafectivo",
+    "y": "Reingreso 90 d",
+    "tabla": [
+     [
+      0,
+      3
+     ],
+     [
+      31,
+      139
+     ]
+    ],
+    "pct_exp": 0.0,
+    "pct_noexp": 18.2,
+    "OR": 0.63,
+    "IC_lo": 0.03,
+    "IC_hi": 12.56,
+    "p": 1.0,
+    "prueba": "Fisher",
+    "n": 173
+   },
+   {
+    "x": "TDAH",
+    "y": "Reingreso 90 d",
+    "tabla": [
+     [
+      3,
+      6
+     ],
+     [
+      28,
+      136
+     ]
+    ],
+    "pct_exp": 33.3,
+    "pct_noexp": 17.1,
+    "OR": 2.43,
+    "IC_lo": 0.57,
+    "IC_hi": 10.3,
+    "p": 0.2042,
+    "prueba": "Fisher",
+    "n": 173
+   },
+   {
+    "x": "Otros",
+    "y": "Reingreso 90 d",
+    "tabla": [
+     [
+      2,
+      7
+     ],
+     [
+      29,
+      135
+     ]
+    ],
+    "pct_exp": 22.2,
+    "pct_noexp": 17.7,
+    "OR": 1.33,
+    "IC_lo": 0.26,
+    "IC_hi": 6.73,
+    "p": 0.6641,
+    "prueba": "Fisher",
+    "n": 173
+   }
+  ]
+ },
+ "biv_mw": [
+  {
+   "grupo": "Comorbilidad psiquiátrica",
+   "var": "Edad de inicio",
+   "mediana_si": 15.0,
+   "mediana_no": 15.0,
+   "n_si": 85,
+   "n_no": 33,
+   "U": 1435.5,
+   "p": 0.8441
+  },
+  {
+   "grupo": "Abuso sexual",
+   "var": "Edad de inicio",
+   "mediana_si": 14.0,
+   "mediana_no": 15.0,
+   "n_si": 65,
+   "n_no": 53,
+   "U": 1002.0,
+   "p": 0.0001
+  },
+  {
+   "grupo": "Violencia intrafamiliar",
+   "var": "Edad de inicio",
+   "mediana_si": 14.0,
+   "mediana_no": 15.0,
+   "n_si": 95,
+   "n_no": 23,
+   "U": 854.5,
+   "p": 0.1036
+  },
+  {
+   "grupo": "Policonsumo",
+   "var": "Edad de inicio",
+   "mediana_si": 15.0,
+   "mediana_no": 15.0,
+   "n_si": 95,
+   "n_no": 23,
+   "U": 975.0,
+   "p": 0.4226
+  },
+  {
+   "grupo": "Reingreso 90 d",
+   "var": "Días de hospitalización",
+   "mediana_si": 9.0,
+   "mediana_no": 9.0,
+   "n_si": 31,
+   "n_no": 142,
+   "U": 1924.0,
+   "p": 0.2731
+  },
+  {
+   "grupo": "Antipsicótico LAI",
+   "var": "Días de hospitalización",
+   "mediana_si": 9.0,
+   "mediana_no": 9.0,
+   "n_si": 48,
+   "n_no": 125,
+   "U": 2995.5,
+   "p": 0.9892
+  }
+ ],
+ "kw_dias_egreso": {
+  "H": 79.62,
+  "gl": 5,
+  "p": 1.0072860978696393e-15,
+  "grupos": [
+   {
+    "cat": "Alta voluntaria",
+    "n": 29,
+    "mediana": 4.0,
+    "q1": 2.0,
+    "q3": 8.0
+   },
+   {
+    "cat": "Completó programa CETA",
+    "n": 25,
+    "mediana": 30.0,
+    "q1": 29.0,
+    "q3": 36.0
+   },
+   {
+    "cat": "Expulsión de CETA",
+    "n": 4,
+    "mediana": 28.0,
+    "q1": 25.75,
+    "q3": 29.25
+   },
+   {
+    "cat": "Mejoría",
+    "n": 103,
+    "mediana": 9.0,
+    "q1": 6.0,
+    "q3": 13.0
+   },
+   {
+    "cat": "SSAM",
+    "n": 8,
+    "mediana": 2.5,
+    "q1": 1.75,
+    "q3": 11.5
+   },
+   {
+    "cat": "Traslado a otro hospital",
+    "n": 4,
+    "mediana": 2.0,
+    "q1": 1.0,
+    "q3": 3.75
+   }
+  ]
+ },
+ "screen_reingreso_pac": [
+  {
+   "x": "T. bipolar",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     10,
+     18
+    ],
+    [
+     12,
+     78
+    ]
+   ],
+   "pct_exp": 35.7,
+   "pct_noexp": 13.3,
+   "OR": 3.61,
+   "IC_lo": 1.35,
+   "IC_hi": 9.65,
+   "p": 0.0079,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.134
+  },
+  {
+   "x": "T. personalidad",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     3,
+     33
+    ],
+    [
+     19,
+     63
+    ]
+   ],
+   "pct_exp": 8.3,
+   "pct_noexp": 23.2,
+   "OR": 0.3,
+   "IC_lo": 0.08,
+   "IC_hi": 1.09,
+   "p": 0.0567,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.482
+  },
+  {
+   "x": "T. depresivo",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     5,
+     37
+    ],
+    [
+     17,
+     59
+    ]
+   ],
+   "pct_exp": 11.9,
+   "pct_noexp": 22.4,
+   "OR": 0.47,
+   "IC_lo": 0.16,
+   "IC_hi": 1.38,
+   "p": 0.1623,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.654
+  },
+  {
+   "x": "Atención previa salud mental",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     22,
+     87
+    ],
+    [
+     0,
+     9
+    ]
+   ],
+   "pct_exp": 20.2,
+   "pct_noexp": 0.0,
+   "OR": 4.89,
+   "IC_lo": 0.27,
+   "IC_hi": 87.15,
+   "p": 0.2061,
+   "prueba": "Fisher",
+   "n": 118,
+   "q_FDR": 0.654
+  },
+  {
+   "x": "Extranjera",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     6,
+     16
+    ],
+    [
+     16,
+     80
+    ]
+   ],
+   "pct_exp": 27.3,
+   "pct_noexp": 16.7,
+   "OR": 1.88,
+   "IC_lo": 0.64,
+   "IC_hi": 5.53,
+   "p": 0.2421,
+   "prueba": "Fisher",
+   "n": 118,
+   "q_FDR": 0.654
+  },
+  {
+   "x": "Comorbilidad médica",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     7,
+     43
+    ],
+    [
+     15,
+     53
+    ]
+   ],
+   "pct_exp": 14.0,
+   "pct_noexp": 22.1,
+   "OR": 0.58,
+   "IC_lo": 0.22,
+   "IC_hi": 1.54,
+   "p": 0.2667,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.654
+  },
+  {
+   "x": "Rehabilitación previa",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     8,
+     24
+    ],
+    [
+     14,
+     72
+    ]
+   ],
+   "pct_exp": 25.0,
+   "pct_noexp": 16.3,
+   "OR": 1.71,
+   "IC_lo": 0.64,
+   "IC_hi": 4.59,
+   "p": 0.2795,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.654
+  },
+  {
+   "x": "Intento suicida previo",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     10,
+     54
+    ],
+    [
+     12,
+     42
+    ]
+   ],
+   "pct_exp": 15.6,
+   "pct_noexp": 22.2,
+   "OR": 0.65,
+   "IC_lo": 0.26,
+   "IC_hi": 1.64,
+   "p": 0.3593,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.654
+  },
+  {
+   "x": "Abuso sexual",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     14,
+     51
+    ],
+    [
+     8,
+     45
+    ]
+   ],
+   "pct_exp": 21.5,
+   "pct_noexp": 15.1,
+   "OR": 1.54,
+   "IC_lo": 0.59,
+   "IC_hi": 4.02,
+   "p": 0.3713,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.654
+  },
+  {
+   "x": "Grupos de autoayuda",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     9,
+     30
+    ],
+    [
+     13,
+     66
+    ]
+   ],
+   "pct_exp": 23.1,
+   "pct_noexp": 16.5,
+   "OR": 1.52,
+   "IC_lo": 0.59,
+   "IC_hi": 3.95,
+   "p": 0.385,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.654
+  },
+  {
+   "x": "Policonsumo",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     19,
+     76
+    ],
+    [
+     3,
+     20
+    ]
+   ],
+   "pct_exp": 20.0,
+   "pct_noexp": 13.0,
+   "OR": 1.67,
+   "IC_lo": 0.45,
+   "IC_hi": 6.2,
+   "p": 0.5605,
+   "prueba": "Fisher",
+   "n": 118,
+   "q_FDR": 0.799
+  },
+  {
+   "x": "Conducta autolesiva",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     9,
+     45
+    ],
+    [
+     13,
+     51
+    ]
+   ],
+   "pct_exp": 16.7,
+   "pct_noexp": 20.3,
+   "OR": 0.78,
+   "IC_lo": 0.31,
+   "IC_hi": 2.01,
+   "p": 0.6124,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.799
+  },
+  {
+   "x": "Comorbilidad psiquiátrica",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     15,
+     70
+    ],
+    [
+     7,
+     26
+    ]
+   ],
+   "pct_exp": 17.6,
+   "pct_noexp": 21.2,
+   "OR": 0.8,
+   "IC_lo": 0.29,
+   "IC_hi": 2.17,
+   "p": 0.6554,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.799
+  },
+  {
+   "x": "Hospitalización previa TUS",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     11,
+     43
+    ],
+    [
+     11,
+     53
+    ]
+   ],
+   "pct_exp": 20.4,
+   "pct_noexp": 17.2,
+   "OR": 1.23,
+   "IC_lo": 0.49,
+   "IC_hi": 3.12,
+   "p": 0.6583,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.799
+  },
+  {
+   "x": "Antecedentes legales",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     12,
+     49
+    ],
+    [
+     10,
+     47
+    ]
+   ],
+   "pct_exp": 19.7,
+   "pct_noexp": 17.5,
+   "OR": 1.15,
+   "IC_lo": 0.45,
+   "IC_hi": 2.92,
+   "p": 0.7667,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.869
+  },
+  {
+   "x": "Inicio <15 años",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     11,
+     46
+    ],
+    [
+     11,
+     50
+    ]
+   ],
+   "pct_exp": 19.3,
+   "pct_noexp": 18.0,
+   "OR": 1.09,
+   "IC_lo": 0.43,
+   "IC_hi": 2.75,
+   "p": 0.86,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.914
+  },
+  {
+   "x": "Violencia intrafamiliar",
+   "y": "Reingreso 90 d (alguna vez)",
+   "tabla": [
+    [
+     18,
+     77
+    ],
+    [
+     4,
+     19
+    ]
+   ],
+   "pct_exp": 18.9,
+   "pct_noexp": 17.4,
+   "OR": 1.11,
+   "IC_lo": 0.34,
+   "IC_hi": 3.66,
+   "p": 1.0,
+   "prueba": "Fisher",
+   "n": 118,
+   "q_FDR": 1.0
+  }
+ ],
+ "screen_parasuicida_pac": [
+  {
+   "x": "T. depresivo",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     38,
+     4
+    ],
+    [
+     38,
+     38
+    ]
+   ],
+   "pct_exp": 90.5,
+   "pct_noexp": 50.0,
+   "OR": 9.5,
+   "IC_lo": 3.09,
+   "IC_hi": 29.24,
+   "p": 0.0,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.0
+  },
+  {
+   "x": "T. bipolar",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     11,
+     17
+    ],
+    [
+     65,
+     25
+    ]
+   ],
+   "pct_exp": 39.3,
+   "pct_noexp": 72.2,
+   "OR": 0.25,
+   "IC_lo": 0.1,
+   "IC_hi": 0.6,
+   "p": 0.0015,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.011
+  },
+  {
+   "x": "T. personalidad",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     30,
+     6
+    ],
+    [
+     46,
+     36
+    ]
+   ],
+   "pct_exp": 83.3,
+   "pct_noexp": 56.1,
+   "OR": 3.91,
+   "IC_lo": 1.47,
+   "IC_hi": 10.42,
+   "p": 0.0044,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.014
+  },
+  {
+   "x": "Violencia intrafamiliar",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     67,
+     28
+    ],
+    [
+     9,
+     14
+    ]
+   ],
+   "pct_exp": 70.5,
+   "pct_noexp": 39.1,
+   "OR": 3.72,
+   "IC_lo": 1.44,
+   "IC_hi": 9.59,
+   "p": 0.0048,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.014
+  },
+  {
+   "x": "Antecedentes legales",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     32,
+     29
+    ],
+    [
+     44,
+     13
+    ]
+   ],
+   "pct_exp": 52.5,
+   "pct_noexp": 77.2,
+   "OR": 0.33,
+   "IC_lo": 0.15,
+   "IC_hi": 0.72,
+   "p": 0.005,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.014
+  },
+  {
+   "x": "Abuso sexual",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     49,
+     16
+    ],
+    [
+     27,
+     26
+    ]
+   ],
+   "pct_exp": 75.4,
+   "pct_noexp": 50.9,
+   "OR": 2.95,
+   "IC_lo": 1.35,
+   "IC_hi": 6.43,
+   "p": 0.0058,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.014
+  },
+  {
+   "x": "Comorbilidad psiquiátrica",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     60,
+     25
+    ],
+    [
+     16,
+     17
+    ]
+   ],
+   "pct_exp": 70.6,
+   "pct_noexp": 48.5,
+   "OR": 2.55,
+   "IC_lo": 1.12,
+   "IC_hi": 5.83,
+   "p": 0.0244,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.052
+  },
+  {
+   "x": "Inicio <15 años",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     41,
+     16
+    ],
+    [
+     35,
+     26
+    ]
+   ],
+   "pct_exp": 71.9,
+   "pct_noexp": 57.4,
+   "OR": 1.9,
+   "IC_lo": 0.88,
+   "IC_hi": 4.11,
+   "p": 0.099,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.186
+  },
+  {
+   "x": "Policonsumo",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     64,
+     31
+    ],
+    [
+     12,
+     11
+    ]
+   ],
+   "pct_exp": 67.4,
+   "pct_noexp": 52.2,
+   "OR": 1.89,
+   "IC_lo": 0.75,
+   "IC_hi": 4.77,
+   "p": 0.1721,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.287
+  },
+  {
+   "x": "Rehabilitación previa",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     18,
+     14
+    ],
+    [
+     58,
+     28
+    ]
+   ],
+   "pct_exp": 56.2,
+   "pct_noexp": 67.4,
+   "OR": 0.62,
+   "IC_lo": 0.27,
+   "IC_hi": 1.43,
+   "p": 0.259,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.389
+  },
+  {
+   "x": "Atención previa salud mental",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     69,
+     40
+    ],
+    [
+     7,
+     2
+    ]
+   ],
+   "pct_exp": 63.3,
+   "pct_noexp": 77.8,
+   "OR": 0.49,
+   "IC_lo": 0.1,
+   "IC_hi": 2.49,
+   "p": 0.488,
+   "prueba": "Fisher",
+   "n": 118,
+   "q_FDR": 0.665
+  },
+  {
+   "x": "Comorbilidad médica",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     31,
+     19
+    ],
+    [
+     45,
+     23
+    ]
+   ],
+   "pct_exp": 62.0,
+   "pct_noexp": 66.2,
+   "OR": 0.83,
+   "IC_lo": 0.39,
+   "IC_hi": 1.78,
+   "p": 0.6396,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.747
+  },
+  {
+   "x": "Grupos de autoayuda",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     24,
+     15
+    ],
+    [
+     52,
+     27
+    ]
+   ],
+   "pct_exp": 61.5,
+   "pct_noexp": 65.8,
+   "OR": 0.83,
+   "IC_lo": 0.38,
+   "IC_hi": 1.84,
+   "p": 0.6475,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.747
+  },
+  {
+   "x": "Hospitalización previa TUS",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     34,
+     20
+    ],
+    [
+     42,
+     22
+    ]
+   ],
+   "pct_exp": 63.0,
+   "pct_noexp": 65.6,
+   "OR": 0.89,
+   "IC_lo": 0.42,
+   "IC_hi": 1.9,
+   "p": 0.7635,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.818
+  },
+  {
+   "x": "Extranjera",
+   "y": "Conducta parasuicida",
+   "tabla": [
+    [
+     14,
+     8
+    ],
+    [
+     62,
+     34
+    ]
+   ],
+   "pct_exp": 63.6,
+   "pct_noexp": 64.6,
+   "OR": 0.96,
+   "IC_lo": 0.37,
+   "IC_hi": 2.52,
+   "p": 0.9333,
+   "prueba": "χ²",
+   "n": 118,
+   "q_FDR": 0.933
+  }
+ ],
+ "screen_abandono_epi": [
+  {
+   "x": "Antipsicótico LAI",
+   "y": "Alta voluntaria / SSAM / expulsión",
+   "tabla": [
+    [
+     1,
+     47
+    ],
+    [
+     40,
+     85
+    ]
+   ],
+   "pct_exp": 2.1,
+   "pct_noexp": 32.0,
+   "OR": 0.05,
+   "IC_lo": 0.01,
+   "IC_hi": 0.34,
+   "p": 0.0,
+   "prueba": "χ²",
+   "n": 173,
+   "q_FDR": 0.0
+  },
+  {
+   "x": "Síntomas psicóticos al ingreso",
+   "y": "Alta voluntaria / SSAM / expulsión",
+   "tabla": [
+    [
+     11,
+     77
+    ],
+    [
+     30,
+     55
+    ]
+   ],
+   "pct_exp": 12.5,
+   "pct_noexp": 35.3,
+   "OR": 0.26,
+   "IC_lo": 0.12,
+   "IC_hi": 0.57,
+   "p": 0.0004,
+   "prueba": "χ²",
+   "n": 173,
+   "q_FDR": 0.002
+  },
+  {
+   "x": "Hospitalización previa TUS",
+   "y": "Alta voluntaria / SSAM / expulsión",
+   "tabla": [
+    [
+     11,
+     76
+    ],
+    [
+     30,
+     56
+    ]
+   ],
+   "pct_exp": 12.6,
+   "pct_noexp": 34.9,
+   "OR": 0.27,
+   "IC_lo": 0.12,
+   "IC_hi": 0.58,
+   "p": 0.0006,
+   "prueba": "χ²",
+   "n": 173,
+   "q_FDR": 0.002
+  },
+  {
+   "x": "Heteroagresión al ingreso",
+   "y": "Alta voluntaria / SSAM / expulsión",
+   "tabla": [
+    [
+     12,
+     76
+    ],
+    [
+     29,
+     56
+    ]
+   ],
+   "pct_exp": 13.6,
+   "pct_noexp": 34.1,
+   "OR": 0.3,
+   "IC_lo": 0.14,
+   "IC_hi": 0.65,
+   "p": 0.0015,
+   "prueba": "χ²",
+   "n": 173,
+   "q_FDR": 0.004
+  },
+  {
+   "x": "T. personalidad",
+   "y": "Alta voluntaria / SSAM / expulsión",
+   "tabla": [
+    [
+     16,
+     25
+    ],
+    [
+     25,
+     107
+    ]
+   ],
+   "pct_exp": 39.0,
+   "pct_noexp": 18.9,
+   "OR": 2.74,
+   "IC_lo": 1.28,
+   "IC_hi": 5.88,
+   "p": 0.0082,
+   "prueba": "χ²",
+   "n": 173,
+   "q_FDR": 0.017
+  },
+  {
+   "x": "Policonsumo",
+   "y": "Alta voluntaria / SSAM / expulsión",
+   "tabla": [
+    [
+     38,
+     97
+    ],
+    [
+     3,
+     35
+    ]
+   ],
+   "pct_exp": 28.1,
+   "pct_noexp": 7.9,
+   "OR": 4.57,
+   "IC_lo": 1.33,
+   "IC_hi": 15.75,
+   "p": 0.0095,
+   "prueba": "χ²",
+   "n": 173,
+   "q_FDR": 0.017
+  },
+  {
+   "x": "T. bipolar",
+   "y": "Alta voluntaria / SSAM / expulsión",
+   "tabla": [
+    [
+     7,
+     50
+    ],
+    [
+     34,
+     82
+    ]
+   ],
+   "pct_exp": 12.3,
+   "pct_noexp": 29.3,
+   "OR": 0.34,
+   "IC_lo": 0.14,
+   "IC_hi": 0.82,
+   "p": 0.0133,
+   "prueba": "χ²",
+   "n": 173,
+   "q_FDR": 0.021
+  },
+  {
+   "x": "Antecedentes legales",
+   "y": "Alta voluntaria / SSAM / expulsión",
+   "tabla": [
+    [
+     15,
+     76
+    ],
+    [
+     26,
+     56
+    ]
+   ],
+   "pct_exp": 16.5,
+   "pct_noexp": 31.7,
+   "OR": 0.43,
+   "IC_lo": 0.21,
+   "IC_hi": 0.88,
+   "p": 0.0187,
+   "prueba": "χ²",
+   "n": 173,
+   "q_FDR": 0.026
+  },
+  {
+   "x": "Conducta autolesiva",
+   "y": "Alta voluntaria / SSAM / expulsión",
+   "tabla": [
+    [
+     22,
+     51
+    ],
+    [
+     19,
+     81
+    ]
+   ],
+   "pct_exp": 30.1,
+   "pct_noexp": 19.0,
+   "OR": 1.84,
+   "IC_lo": 0.91,
+   "IC_hi": 3.73,
+   "p": 0.0889,
+   "prueba": "χ²",
+   "n": 173,
+   "q_FDR": 0.109
+  },
+  {
+   "x": "Comorbilidad psiquiátrica",
+   "y": "Alta voluntaria / SSAM / expulsión",
+   "tabla": [
+    [
+     31,
+     91
+    ],
+    [
+     10,
+     41
+    ]
+   ],
+   "pct_exp": 25.4,
+   "pct_noexp": 19.6,
+   "OR": 1.4,
+   "IC_lo": 0.63,
+   "IC_hi": 3.12,
+   "p": 0.4132,
+   "prueba": "χ²",
+   "n": 173,
+   "q_FDR": 0.439
+  },
+  {
+   "x": "Medicación de urgencia",
+   "y": "Alta voluntaria / SSAM / expulsión",
+   "tabla": [
+    [
+     14,
+     54
+    ],
+    [
+     27,
+     78
+    ]
+   ],
+   "pct_exp": 20.6,
+   "pct_noexp": 25.7,
+   "OR": 0.75,
+   "IC_lo": 0.36,
+   "IC_hi": 1.56,
+   "p": 0.4387,
+   "prueba": "χ²",
+   "n": 173,
+   "q_FDR": 0.439
+  }
+ ],
+ "multi": [
+  {
+   "x": "droga_eleccion",
+   "y": "sx_psicotico",
+   "chi2": 29.5,
+   "gl": 8,
+   "p": 0.0003,
+   "cramer_v": 0.413,
+   "celdas_esperadas_<5": 9,
+   "tabla": {
+    "2C-B (tusi)": {
+     "No": 4,
+     "Sí": 0
+    },
+    "Alcohol": {
+     "No": 21,
+     "Sí": 19
+    },
+    "Benzodiacepinas": {
+     "No": 6,
+     "Sí": 0
+    },
+    "Cannabis": {
+     "No": 11,
+     "Sí": 26
+    },
+    "Cocaína": {
+     "No": 24,
+     "Sí": 30
+    },
+    "Metanfetamina": {
+     "No": 0,
+     "Sí": 5
+    },
+    "Nicotina": {
+     "No": 7,
+     "Sí": 3
+    },
+    "Opioides": {
+     "No": 6,
+     "Sí": 0
+    },
+    "Piedra/crack": {
+     "No": 6,
+     "Sí": 5
+    }
+   }
+  },
+  {
+   "x": "droga_eleccion",
+   "y": "sx_heteroagresion",
+   "chi2": 31.2,
+   "gl": 8,
+   "p": 0.0001,
+   "cramer_v": 0.425,
+   "celdas_esperadas_<5": 9,
+   "tabla": {
+    "2C-B (tusi)": {
+     "No": 4,
+     "Sí": 0
+    },
+    "Alcohol": {
+     "No": 18,
+     "Sí": 22
+    },
+    "Benzodiacepinas": {
+     "No": 6,
+     "Sí": 0
+    },
+    "Cannabis": {
+     "No": 11,
+     "Sí": 26
+    },
+    "Cocaína": {
+     "No": 26,
+     "Sí": 28
+    },
+    "Metanfetamina": {
+     "No": 0,
+     "Sí": 5
+    },
+    "Nicotina": {
+     "No": 8,
+     "Sí": 2
+    },
+    "Opioides": {
+     "No": 6,
+     "Sí": 0
+    },
+    "Piedra/crack": {
+     "No": 6,
+     "Sí": 5
+    }
+   }
+  },
+  {
+   "x": "motivo_hosp",
+   "y": "motivo_egreso",
+   "chi2": 61.79,
+   "gl": 5,
+   "p": 0.0,
+   "cramer_v": 0.598,
+   "celdas_esperadas_<5": 5,
+   "tabla": {
+    "Crisis": {
+     "Alta voluntaria": 19,
+     "Completó programa CETA": 7,
+     "Expulsión de CETA": 2,
+     "Mejoría": 99,
+     "SSAM": 5,
+     "Traslado a otro hospital": 3
+    },
+    "Programa CETA": {
+     "Alta voluntaria": 10,
+     "Completó programa CETA": 18,
+     "Expulsión de CETA": 2,
+     "Mejoría": 4,
+     "SSAM": 3,
+     "Traslado a otro hospital": 1
+    }
+   }
+  },
+  {
+   "x": "droga_eleccion",
+   "y": "grupo_edad",
+   "chi2": 57.41,
+   "gl": 40,
+   "p": 0.0366,
+   "cramer_v": 0.312,
+   "celdas_esperadas_<5": 45,
+   "tabla": {
+    "2C-B (tusi)": {
+     "18–24": 2,
+     "25–34": 2,
+     "35–44": 0,
+     "45–54": 0,
+     "55–64": 0,
+     "≥65": 0
+    },
+    "Alcohol": {
+     "18–24": 6,
+     "25–34": 5,
+     "35–44": 9,
+     "45–54": 4,
+     "55–64": 1,
+     "≥65": 1
+    },
+    "Benzodiacepinas": {
+     "18–24": 1,
+     "25–34": 2,
+     "35–44": 1,
+     "45–54": 2,
+     "55–64": 0,
+     "≥65": 0
+    },
+    "Cannabis": {
+     "18–24": 10,
+     "25–34": 9,
+     "35–44": 1,
+     "45–54": 1,
+     "55–64": 0,
+     "≥65": 0
+    },
+    "Cocaína": {
+     "18–24": 7,
+     "25–34": 18,
+     "35–44": 8,
+     "45–54": 3,
+     "55–64": 3,
+     "≥65": 2
+    },
+    "Metanfetamina": {
+     "18–24": 3,
+     "25–34": 0,
+     "35–44": 0,
+     "45–54": 0,
+     "55–64": 0,
+     "≥65": 0
+    },
+    "Nicotina": {
+     "18–24": 1,
+     "25–34": 1,
+     "35–44": 1,
+     "45–54": 3,
+     "55–64": 1,
+     "≥65": 0
+    },
+    "Opioides": {
+     "18–24": 0,
+     "25–34": 0,
+     "35–44": 2,
+     "45–54": 0,
+     "55–64": 0,
+     "≥65": 0
+    },
+    "Piedra/crack": {
+     "18–24": 2,
+     "25–34": 1,
+     "35–44": 1,
+     "45–54": 4,
+     "55–64": 0,
+     "≥65": 0
+    }
+   }
+  },
+  {
+   "x": "n_sustancias",
+   "y": "sx_psicotico",
+   "chi2": 2.09,
+   "gl": 3,
+   "p": 0.5531,
+   "cramer_v": 0.11,
+   "celdas_esperadas_<5": 0,
+   "tabla": {
+    "1": {
+     "No": 18,
+     "Sí": 12
+    },
+    "2–3": {
+     "No": 41,
+     "Sí": 46
+    },
+    "4–5": {
+     "No": 19,
+     "Sí": 24
+    },
+    "≥6": {
+     "No": 7,
+     "Sí": 6
+    }
+   }
+  }
+ ],
+ "cramer_matrix": {
+  "labels": [
+   "Antecedentes legales",
+   "Violencia intrafamiliar",
+   "Abuso sexual",
+   "Atención previa salud mental",
+   "Hospitalización previa TUS",
+   "Rehabilitación previa",
+   "Grupos de autoayuda",
+   "Intento suicida previo",
+   "Conducta autolesiva",
+   "Comorbilidad psiquiátrica",
+   "T. depresivo",
+   "T. personalidad",
+   "T. bipolar",
+   "Comorbilidad médica",
+   "Policonsumo",
+   "Inicio <15 años",
+   "Extranjera",
+   "Conducta parasuicida",
+   "Reingreso 90 d (alguna vez)"
+  ],
+  "values": [
+   [
+    1.0,
+    0.17,
+    0.02,
+    0.04,
+    0.31,
+    0.06,
+    0.03,
+    0.21,
+    0.2,
+    0.26,
+    0.31,
+    0.21,
+    0.18,
+    0.17,
+    0.12,
+    0.09,
+    0.15,
+    0.26,
+    0.03
+   ],
+   [
+    0.17,
+    1.0,
+    0.33,
+    0.06,
+    0.11,
+    0.06,
+    0.07,
+    0.24,
+    0.19,
+    0.02,
+    0.05,
+    0.0,
+    0.03,
+    0.27,
+    0.08,
+    0.18,
+    0.15,
+    0.26,
+    0.02
+   ],
+   [
+    0.02,
+    0.33,
+    1.0,
+    0.13,
+    0.08,
+    0.05,
+    0.05,
+    0.2,
+    0.32,
+    0.01,
+    0.1,
+    0.19,
+    0.18,
+    0.12,
+    0.07,
+    0.33,
+    0.05,
+    0.25,
+    0.08
+   ],
+   [
+    0.04,
+    0.06,
+    0.13,
+    1.0,
+    0.2,
+    0.1,
+    0.07,
+    0.14,
+    0.01,
+    0.25,
+    0.01,
+    0.12,
+    0.16,
+    0.18,
+    0.1,
+    0.02,
+    0.19,
+    0.08,
+    0.14
+   ],
+   [
+    0.31,
+    0.11,
+    0.08,
+    0.2,
+    1.0,
+    0.36,
+    0.19,
+    0.01,
+    0.01,
+    0.04,
+    0.11,
+    0.02,
+    0.33,
+    0.1,
+    0.02,
+    0.13,
+    0.09,
+    0.03,
+    0.04
+   ],
+   [
+    0.06,
+    0.06,
+    0.05,
+    0.1,
+    0.36,
+    1.0,
+    0.63,
+    0.09,
+    0.14,
+    0.04,
+    0.06,
+    0.01,
+    0.29,
+    0.1,
+    0.04,
+    0.02,
+    0.0,
+    0.1,
+    0.1
+   ],
+   [
+    0.03,
+    0.07,
+    0.05,
+    0.07,
+    0.19,
+    0.63,
+    1.0,
+    0.03,
+    0.14,
+    0.04,
+    0.03,
+    0.0,
+    0.16,
+    0.09,
+    0.02,
+    0.04,
+    0.08,
+    0.04,
+    0.08
+   ],
+   [
+    0.21,
+    0.24,
+    0.2,
+    0.14,
+    0.01,
+    0.09,
+    0.03,
+    1.0,
+    0.43,
+    0.22,
+    0.43,
+    0.24,
+    0.25,
+    0.04,
+    0.06,
+    0.04,
+    0.05,
+    0.81,
+    0.08
+   ],
+   [
+    0.2,
+    0.19,
+    0.32,
+    0.01,
+    0.01,
+    0.14,
+    0.14,
+    0.43,
+    1.0,
+    0.27,
+    0.42,
+    0.35,
+    0.31,
+    0.04,
+    0.07,
+    0.24,
+    0.09,
+    0.68,
+    0.05
+   ],
+   [
+    0.26,
+    0.02,
+    0.01,
+    0.25,
+    0.04,
+    0.04,
+    0.04,
+    0.22,
+    0.27,
+    1.0,
+    0.46,
+    0.41,
+    0.21,
+    0.15,
+    0.16,
+    0.0,
+    0.1,
+    0.21,
+    0.04
+   ],
+   [
+    0.31,
+    0.05,
+    0.1,
+    0.01,
+    0.11,
+    0.06,
+    0.03,
+    0.43,
+    0.42,
+    0.46,
+    1.0,
+    0.39,
+    0.37,
+    0.19,
+    0.01,
+    0.06,
+    0.1,
+    0.4,
+    0.13
+   ],
+   [
+    0.21,
+    0.0,
+    0.19,
+    0.12,
+    0.02,
+    0.01,
+    0.0,
+    0.24,
+    0.35,
+    0.41,
+    0.39,
+    1.0,
+    0.15,
+    0.1,
+    0.05,
+    0.17,
+    0.06,
+    0.26,
+    0.18
+   ],
+   [
+    0.18,
+    0.03,
+    0.18,
+    0.16,
+    0.33,
+    0.29,
+    0.16,
+    0.25,
+    0.31,
+    0.21,
+    0.37,
+    0.15,
+    1.0,
+    0.12,
+    0.08,
+    0.02,
+    0.09,
+    0.29,
+    0.24
+   ],
+   [
+    0.17,
+    0.27,
+    0.12,
+    0.18,
+    0.1,
+    0.1,
+    0.09,
+    0.04,
+    0.04,
+    0.15,
+    0.19,
+    0.1,
+    0.12,
+    1.0,
+    0.1,
+    0.14,
+    0.07,
+    0.04,
+    0.1
+   ],
+   [
+    0.12,
+    0.08,
+    0.07,
+    0.1,
+    0.02,
+    0.04,
+    0.02,
+    0.06,
+    0.07,
+    0.16,
+    0.01,
+    0.05,
+    0.08,
+    0.1,
+    1.0,
+    0.05,
+    0.04,
+    0.13,
+    0.07
+   ],
+   [
+    0.09,
+    0.18,
+    0.33,
+    0.02,
+    0.13,
+    0.02,
+    0.04,
+    0.04,
+    0.24,
+    0.0,
+    0.06,
+    0.17,
+    0.02,
+    0.14,
+    0.05,
+    1.0,
+    0.28,
+    0.15,
+    0.02
+   ],
+   [
+    0.15,
+    0.15,
+    0.05,
+    0.19,
+    0.09,
+    0.0,
+    0.08,
+    0.05,
+    0.09,
+    0.1,
+    0.1,
+    0.06,
+    0.09,
+    0.07,
+    0.04,
+    0.28,
+    1.0,
+    0.01,
+    0.11
+   ],
+   [
+    0.26,
+    0.26,
+    0.25,
+    0.08,
+    0.03,
+    0.1,
+    0.04,
+    0.81,
+    0.68,
+    0.21,
+    0.4,
+    0.26,
+    0.29,
+    0.04,
+    0.13,
+    0.15,
+    0.01,
+    1.0,
+    0.05
+   ],
+   [
+    0.03,
+    0.02,
+    0.08,
+    0.14,
+    0.04,
+    0.1,
+    0.08,
+    0.08,
+    0.05,
+    0.04,
+    0.13,
+    0.18,
+    0.24,
+    0.1,
+    0.07,
+    0.02,
+    0.11,
+    0.05,
+    1.0
+   ]
+  ]
+ },
+ "cramer_top": [
+  [
+   "Intento suicida previo",
+   "Conducta parasuicida",
+   0.81
+  ],
+  [
+   "Conducta autolesiva",
+   "Conducta parasuicida",
+   0.68
+  ],
+  [
+   "Rehabilitación previa",
+   "Grupos de autoayuda",
+   0.63
+  ],
+  [
+   "Comorbilidad psiquiátrica",
+   "T. depresivo",
+   0.46
+  ],
+  [
+   "Intento suicida previo",
+   "Conducta autolesiva",
+   0.43
+  ],
+  [
+   "Intento suicida previo",
+   "T. depresivo",
+   0.43
+  ],
+  [
+   "Conducta autolesiva",
+   "T. depresivo",
+   0.42
+  ],
+  [
+   "Comorbilidad psiquiátrica",
+   "T. personalidad",
+   0.41
+  ],
+  [
+   "T. depresivo",
+   "Conducta parasuicida",
+   0.4
+  ],
+  [
+   "T. depresivo",
+   "T. personalidad",
+   0.39
+  ],
+  [
+   "T. depresivo",
+   "T. bipolar",
+   0.37
+  ],
+  [
+   "Hospitalización previa TUS",
+   "Rehabilitación previa",
+   0.36
+  ]
+ ]
+}

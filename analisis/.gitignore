@@ -1,0 +1,6 @@
+# NUNCA subir datos: contienen o permiten reidentificar pacientes
+llave_identificacion.csv
+*.csv
+*.xlsx
+*.docx
+__pycache__/

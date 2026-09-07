@@ -1,0 +1,11 @@
+# Datos de pacientes y documentos de la tesis: NUNCA se suben al repositorio
+*.xlsx
+*.docx
+*.pdf
+*.csv
+analisis/llave_identificacion.csv
+analisis/reporte_limpieza.json
+analisis/xai_resultados.json
+__pycache__/
+*.pyc
+.DS_Store

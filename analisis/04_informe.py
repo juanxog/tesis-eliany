@@ -7,20 +7,50 @@ NP, NE = 118, 173
 
 def pfmt(p): return "<0,001" if p < 0.001 else f"{p:.3f}".replace(".", ",")
 # ---------------- SVG helpers (theme-aware via CSS vars) ----------------
+def both(d, m): return f'<div class="ch ch-d">{d}</div><div class="ch ch-m">{m}</div>'
+def scrollable(svg): return f'<div class="scroll"><div class="scroll-in">{svg}</div></div>'
+def _svg_open(w, h, title): return f'<svg class="chart" viewBox="0 0 {w} {h}" role="img" aria-label="{esc(title or "")}">'
+
+
 def hbar(items, color="--c1", unit="pct", w=640, label_w=210, title=None, total=None):
-    rh, pad = 26, 6
-    h = rh*len(items) + pad*2
-    vmax = max(i[unit] for i in items) or 1
-    bar_w = w - label_w - 150
-    s = [f'<svg class="chart" viewBox="0 0 {w} {h}" role="img" aria-label="{esc(title or "")}">']
+    items = list(items); rh, pad = 26, 6; h = rh*len(items) + pad*2
+    vmax = max(i[unit] for i in items) or 1; bar_w = w - label_w - 150
+    d = [_svg_open(w, h, title)]
     for r, it in enumerate(items):
-        y = pad + r*rh; bw = max(2, bar_w * it[unit]/vmax)
-        tip = f"{esc(it['cat'])}: {it['pct']}% (n={it['n']})"
-        s.append(f'<g class="row" data-tip="{tip}"><rect x="0" y="{y}" width="{w}" height="{rh}" fill="transparent"/>'
+        y = pad + r*rh; bw = max(2, bar_w * it[unit]/vmax); tip = f"{esc(it['cat'])}: {it['pct']}% (n={it['n']})"
+        d.append(f'<g class="row" data-tip="{tip}"><rect x="0" y="{y}" width="{w}" height="{rh}" fill="transparent"/>'
                  f'<text x="{label_w-10}" y="{y+rh/2+4}" text-anchor="end" class="lbl">{esc(it["cat"])}</text>'
                  f'<rect x="{label_w}" y="{y+5}" width="{bw:.1f}" height="{rh-10}" rx="3" style="fill:var({color})"/>'
                  f'<text x="{label_w+bw+8:.1f}" y="{y+rh/2+4}" class="val">{it["pct"]}%<tspan class="muted"> · n={it["n"]}</tspan></text></g>')
-    s.append('</svg>'); return "\n".join(s)
+    d.append('</svg>')
+    # móvil: etiqueta arriba, barra debajo
+    mw, mrh, mpad = 360, 38, 4; mh = mrh*len(items) + mpad*2; mbar = mw - 96
+    m = [_svg_open(mw, mh, title)]
+    for r, it in enumerate(items):
+        y = mpad + r*mrh; bw = max(2, mbar * it[unit]/vmax); tip = f"{esc(it['cat'])}: {it['pct']}% (n={it['n']})"
+        m.append(f'<g class="row" data-tip="{tip}"><rect x="0" y="{y}" width="{mw}" height="{mrh}" fill="transparent"/>'
+                 f'<text x="0" y="{y+12}" class="lbl">{esc(it["cat"])}</text>'
+                 f'<rect x="0" y="{y+18}" width="{bw:.1f}" height="11" rx="2" style="fill:var({color})"/>'
+                 f'<text x="{bw+6:.1f}" y="{y+27}" class="val">{it["pct"]}%<tspan class="muted"> · n={it["n"]}</tspan></text></g>')
+    m.append('</svg>')
+    return both("\n".join(d), "\n".join(m))
+
+def forest_m(items, key="x", xmin=0.03, xmax=60, ticks=(0.1,0.3,1,3,10,30), title=""):
+    w, rh, pad = 360, 54, 6; h = rh*len(items) + pad*2 + 20
+    lx, ux = math.log10(xmin), math.log10(xmax); X = lambda v: 6 + (w-12)*(math.log10(max(min(v, xmax), xmin)) - lx)/(ux-lx)
+    o = [_svg_open(w, h, title)]
+    for t in ticks:
+        o.append(f'<line x1="{X(t):.1f}" x2="{X(t):.1f}" y1="{pad}" y2="{h-18}" class="{"ref" if t==1 else "grid"}"/><text x="{X(t):.1f}" y="{h-4}" text-anchor="middle" class="tick">{t}</text>')
+    for r, it in enumerate(items):
+        y = pad + r*rh; sig = it["p"] < 0.05; col = "--c3" if sig else "--c1"
+        q = f' · q={it["q_FDR"]:.3f}' if "q_FDR" in it else ""
+        lab = esc(it[key]); ptxt = pfmt(it["p"]).replace("<", "&lt;")
+        o.append(f'<g class="row"><rect x="0" y="{y}" width="{w}" height="{rh}" fill="transparent"/>'
+                 f'<text x="0" y="{y+13}" class="lbl">{lab}</text>'
+                 f'<line x1="{X(it["IC_lo"]):.1f}" x2="{X(it["IC_hi"]):.1f}" y1="{y+28}" y2="{y+28}" style="stroke:var({col})" stroke-width="2"/>'
+                 f'<circle cx="{X(it["OR"]):.1f}" cy="{y+28}" r="5" style="fill:var({col});stroke:var(--surface)" stroke-width="2"/>'
+                 f'<text x="{w}" y="{y+45}" text-anchor="end" class="val mono">OR {it["OR"]} ({it["IC_lo"]}–{it["IC_hi"]})<tspan class="muted"> p={ptxt}{q}</tspan></text></g>')
+    o.append('</svg>'); return "\n".join(o)
 
 def forest(items, w=720, title=""):
     items = [i for i in items if i["OR"] < 100]
@@ -42,7 +72,7 @@ def forest(items, w=720, title=""):
                  f'<line x1="{X(it["IC_lo"]):.1f}" x2="{X(it["IC_hi"]):.1f}" y1="{y}" y2="{y}" style="stroke:var({col})" stroke-width="2"/>'
                  f'<circle cx="{X(it["OR"]):.1f}" cy="{y}" r="5" style="fill:var({col});stroke:var(--surface)" stroke-width="2"/>'
                  f'<text x="{w-rw+8}" y="{y+4}" class="val mono">{it["OR"]} ({it["IC_lo"]}–{it["IC_hi"]})<tspan class="muted"> p={pfmt(it["p"]).replace("<","&lt;")}{q}</tspan></text></g>')
-    s.append(f'<text x="{lw+pw/2:.0f}" y="{h-8}" text-anchor="middle" class="tick" dy="-14"></text></svg>'); return "\n".join(s)
+    s.append('</svg>'); return both("\n".join(s), forest_m(items, "x", title=title))
 
 def heatmap(labels, values, w=720):
     n = len(labels); lw = 190; cs = (w-lw-10)/n; h = lw + n*cs
@@ -57,9 +87,10 @@ def heatmap(labels, values, w=720):
             tip = f"{esc(labels[i])} × {esc(labels[j])}: V = {v}"
             txt = f'<text x="{lw+j*cs+cs/2:.1f}" y="{y+cs/2+3.5:.1f}" text-anchor="middle" class="cell {"on" if v>0.4 else ""}">{v:.2f}</text>' if (i != j and v >= 0.2) else ""
             s.append(f'<g data-tip="{tip}"><rect x="{lw+j*cs:.1f}" y="{y:.1f}" width="{cs-1:.1f}" height="{cs-1:.1f}" style="fill:var(--c1);fill-opacity:{op:.2f}"/>{txt}</g>')
-    s.append('</svg>'); return "\n".join(s)
+    s.append('</svg>'); return scrollable("\n".join(s))
 
-def silhouette(res, w=520, h=220):
+def silhouette(res): return both(_silhouette(res), _silhouette(res, 340, 200))
+def _silhouette(res, w=520, h=220):
     ks = res["k"]; pad_l, pad_b, pad_t = 44, 30, 10; pw, ph = w-pad_l-12, h-pad_b-pad_t
     ymax = 0.3
     X = lambda k: pad_l + pw*(k-ks[0])/(ks[-1]-ks[0]); Y = lambda v: pad_t + ph*(1-v/ymax)
@@ -75,7 +106,8 @@ def silhouette(res, w=520, h=220):
     s.append(f'<text x="{X(ks[0])+6:.0f}" y="{Y(res["sil_pam"][0])-8:.0f}" class="val" style="fill:var(--c1)">PAM</text><text x="{X(ks[1])+6:.0f}" y="{Y(res["sil_hc"][1])+14:.0f}" class="val" style="fill:var(--c2)">Jerárquico</text></svg>')
     return "\n".join(s)
 
-def scatter(pts, w=520, h=400):
+def scatter(pts): return both(_scatter(pts), _scatter(pts, 340, 300))
+def _scatter(pts, w=520, h=400):
     xs = [p["x"] for p in pts]; ys = [p["y"] for p in pts]; pad = 16
     X = lambda x: pad + (w-2*pad)*(x-min(xs))/(max(xs)-min(xs)); Y = lambda y: pad + (h-2*pad)*(1-(y-min(ys))/(max(ys)-min(ys)))
     s = [f'<svg class="chart" viewBox="0 0 {w} {h}" role="img" aria-label="Pacientes en dos dimensiones (MDS)">']
@@ -99,7 +131,7 @@ def coef_forest(coefs, w=720, title=""):
         o.append(f'<g class="row" data-tip="{tip}"><rect x="0" y="{y-rh/2}" width="{w}" height="{rh}" fill="transparent"/><text x="{lw-10}" y="{y+4}" text-anchor="end" class="lbl">{esc(c["variable"])}</text>'
                  f'<line x1="{X(c["IC_lo"]):.1f}" x2="{X(c["IC_hi"]):.1f}" y1="{y}" y2="{y}" style="stroke:var({col})" stroke-width="2"/><circle cx="{X(c["OR"]):.1f}" cy="{y}" r="5" style="fill:var({col});stroke:var(--surface)" stroke-width="2"/>'
                  f'<text x="{w-rw+8}" y="{y+4}" class="val mono">{c["OR"]} ({c["IC_lo"]}–{c["IC_hi"]})<tspan class="muted"> p={pfmt(c["p"]).replace("<","&lt;")}</tspan></text></g>')
-    o.append('</svg>'); return "\n".join(o)
+    o.append('</svg>'); return both("\n".join(o), forest_m(items, "variable", xmin=0.1, xmax=20, ticks=(0.1,0.3,1,3,10), title=title))
 
 def calib_chart(cal, slope, w=360, h=300):
     pad=40; mx=0.7; X=lambda v: pad+(w-pad-12)*v/mx; Y=lambda v: (h-pad)-(h-pad-12)*v/mx
@@ -139,7 +171,16 @@ def imp_chart(items, w=720):
                  f'<rect x="{lw}" y="{y+4}" width="{pw*a/mx:.1f}" height="11" rx="2" style="fill:var(--c1)"/><text x="{lw+pw*a/mx+6:.1f}" y="{y+13}" class="val">{a*100:.0f}%</text>'
                  f'<rect x="{lw}" y="{y+18}" width="{pw*b/mx:.1f}" height="11" rx="2" style="fill:var(--c2)"/><text x="{lw+pw*b/mx+6:.1f}" y="{y+27}" class="val">{b*100:.0f}%</text></g>')
     o.append(f'<rect x="{lw}" y="{h-16}" width="10" height="10" style="fill:var(--c1)"/><text x="{lw+14}" y="{h-7}" class="tick">Regresión logística (SHAP, log-odds)</text><rect x="{lw+230}" y="{h-16}" width="10" height="10" style="fill:var(--c2)"/><text x="{lw+244}" y="{h-7}" class="tick">Bosque aleatorio (SHAP, probabilidad)</text></svg>')
-    return "\n".join(o)
+    mw, mrh, mpad = 360, 46, 4; mh = mrh*len(items)+mpad*2+18; mbar = mw-60
+    m=[_svg_open(mw, mh, "Importancia global")]
+    for r,i in enumerate(items):
+        y=mpad+r*mrh; a=i["shap_logistica"]/tl; b=i["shap_bosque"]/tb
+        m.append(f'<g class="row" data-tip="{esc(i["variable"])}: {a*100:.0f}% logística · {b*100:.0f}% bosque"><rect x="0" y="{y}" width="{mw}" height="{mrh}" fill="transparent"/>'
+                 f'<text x="0" y="{y+12}" class="lbl">{esc(i["variable"])}</text>'
+                 f'<rect x="0" y="{y+18}" width="{mbar*a/mx:.1f}" height="8" rx="2" style="fill:var(--c1)"/><text x="{mbar*a/mx+5:.1f}" y="{y+26}" class="val">{a*100:.0f}%</text>'
+                 f'<rect x="0" y="{y+29}" width="{mbar*b/mx:.1f}" height="8" rx="2" style="fill:var(--c2)"/><text x="{mbar*b/mx+5:.1f}" y="{y+37}" class="val">{b*100:.0f}%</text></g>')
+    m.append(f'<rect x="0" y="{mh-14}" width="9" height="9" style="fill:var(--c1)"/><text x="13" y="{mh-6}" class="tick">Logística</text><rect x="90" y="{mh-14}" width="9" height="9" style="fill:var(--c2)"/><text x="103" y="{mh-6}" class="tick">Bosque aleatorio</text></svg>')
+    return both("\n".join(o), "\n".join(m))
 
 def beeswarm(rows, w=720):
     rh, pad, lw = 50, 10, 230; h = rh*len(rows)+pad*2+26; pw = w-lw-20
@@ -169,14 +210,15 @@ def beeswarm(rows, w=720):
                 tip=f'{esc(row["variable"])} = {("Sí" if xv>=0.5 else "No") if not es_edad else int(xv)} → SHAP {sv:+.2f}'
                 o.append(f'<circle cx="{X(sv)+dx:.1f}" cy="{y0+dy:.1f}" r="3" style="fill:{col};fill-opacity:.8" data-tip="{tip}"/>')
     o.append(f'<circle cx="{lw}" cy="{h-11}" r="4" style="fill:var(--c4)"/><text x="{lw+8}" y="{h-8}" class="tick">No / edad baja</text><circle cx="{lw+120}" cy="{h-11}" r="4" style="fill:var(--c3)"/><text x="{lw+128}" y="{h-8}" class="tick">Sí / edad alta</text><text x="{w-20}" y="{h-8}" text-anchor="end" class="tick">← baja el riesgo · sube el riesgo →   (log-odds)</text></svg>')
-    return "\n".join(o)
+    return scrollable("\n".join(o))
 
 def waterfall(ej):
     c=ej["contribuciones_logodds"]; ks=sorted(c,key=lambda k:-abs(c[k])); mx=max(abs(v) for v in c.values()) or 1
     rows="".join(f'<div class="wf"><span class="wfl">{esc(k)} <b class="muted">{esc(str(ej["caracteristicas"][k]))}</b></span><span class="wfb"><i style="--w:{abs(c[k])/mx*100:.0f}%;--side:{"pos" if c[k]>0 else "neg"}" class="{"pos" if c[k]>0 else "neg"}"></i></span><span class="wfv mono">{c[k]:+.2f}</span></div>' for k in ks)
     return f'<article class="ex"><div class="k">EPISODIO {esc(ej["etiqueta"])}</div><div class="risk"><span class="n">{ej["riesgo_logistica"]*100:.0f}%</span><span class="l">riesgo según logística · bosque {ej["riesgo_bosque"]*100:.0f}% · abandono real: <b>{ej["abandono_real"]}</b></span></div>{rows}<div class="wfnote">Base {XA["base_prob_logistica"]*100:.0f}% (log-odds {XA["base_logodds"]:+.2f}); las barras suman la diferencia respecto a la base.</div></article>'
 
-def pd_chart(pdd, w=520, h=220):
+def pd_chart(pdd): return both(_pd_chart(pdd), _pd_chart(pdd, 340, 200))
+def _pd_chart(pdd, w=520, h=220):
     ages=pdd["edad"]; pad_l,pad_b,pad_t=44,30,10; pw,ph=w-pad_l-12,h-pad_b-pad_t; ymax=0.4
     X=lambda a: pad_l+pw*(a-ages[0])/(ages[-1]-ages[0]); Y=lambda v: pad_t+ph*(1-v/ymax)
     o=[f'<svg class="chart" viewBox="0 0 {w} {h}" role="img" aria-label="Dependencia parcial de la edad">']
@@ -371,6 +413,31 @@ details.faq p{max-width:70ch;margin:12px 0 4px 30px} details.faq .tblwrap{margin
 /* bibliografía */
 ol.refs{max-width:76ch;padding-left:2.6em;font-family:var(--ui);font-size:14px;line-height:1.5;color:var(--ink2)} ol.refs li{margin:7px 0;padding-left:.2em} ol.refs li::marker{font-family:var(--mono);font-size:12px;color:var(--muted)}
 ol.refs a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in oklab,var(--accent) 40%,transparent)} ol.refs a:hover{border-bottom-color:var(--accent)}
+
+/* variantes de gráfica y desplazamiento */
+.ch-m{display:none} .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tblwrap.scrolls::before,.scroll.scrolls::before{content:"Desliza hacia el lado para ver todo →";display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);padding:0 0 8px}
+nav.toc .wrap{position:relative} nav.toc .wrap::after{content:"";position:absolute;right:0;top:0;bottom:0;width:44px;background:linear-gradient(90deg,transparent,var(--paper));pointer-events:none;opacity:0}
+@media (max-width:640px){
+ .ch-d{display:none} .ch-m{display:block} .scroll-in{min-width:700px}
+ nav.toc .wrap::after{opacity:1} nav.toc ul{gap:0 20px;padding-right:44px} nav.toc a{font-size:13.5px;padding:12px 0 10px}
+ body{font-size:16.5px} .wrap{padding:0 18px}
+ header.mast{padding:20px 0 24px} .mast-top{font-size:10px;letter-spacing:.1em;gap:6px 14px} h1{margin:20px 0 12px} .sub{font-size:18px;margin-bottom:20px}
+ dl.synopsis>div{padding:11px 0 12px} dl.synopsis>div.span dd{font-size:16px}
+ section.panel{padding:30px 0 44px} h2{font-size:31px} h3{font-size:22px;margin-top:34px} p.lede{font-size:18px}
+ .tiles{grid-template-columns:repeat(2,1fr);gap:0 18px} .tiles.six{grid-template-columns:repeat(2,1fr)} .tile .n{font-size:34px} .tile .l{font-size:13px}
+ figure{margin:22px 0 28px} figcaption{font-size:13.5px;padding:8px 0 10px}
+ table{font-size:13.5px} td{padding:8px 10px 8px 0} th{padding-right:10px} table td:first-child{min-width:130px}
+ .callout{padding-left:14px} .lectura{font-size:14px;padding-left:14px}
+ .profiles{gap:16px} .profile{padding:16px 16px 14px} .profile h4{font-size:22px} .profile ul{font-size:14.5px}
+ .idea h4{font-size:19px} .idea p{font-size:15px}
+ details.faq summary{font-size:19px;gap:10px} details.faq p{margin-left:0} details.faq .tblwrap{margin-left:0}
+ .examples{gap:0} .wf{grid-template-columns:1fr 70px 46px}
+ .calc{padding:16px;gap:18px} .calc-in label{font-size:15px;min-height:28px} .calc-in input[type=checkbox]{width:20px;height:20px} .calc-out .risk .n{font-size:42px}
+ ol.refs{padding-left:2.2em;font-size:13.5px}
+ #tip{max-width:min(320px,calc(100vw - 24px))}
+ footer{font-size:10.5px;letter-spacing:.06em}
+}
 /* tooltip, pie, impresión */
 #tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--paper);font-family:var(--ui);font-size:13px;line-height:1.35;padding:7px 10px;border-radius:2px;max-width:320px;z-index:20;opacity:0;transition:opacity .12s} #tip.on{opacity:1}
 @media (prefers-reduced-motion:reduce){#tip{transition:none}}
@@ -814,7 +881,8 @@ page = f"""<title>Mujeres con TUS en el INSAM</title>
 <div id="tip" role="tooltip"></div>
 <script>
 (function(){{var tip=document.getElementById('tip');
-document.addEventListener('mousemove',function(e){{var el=e.target.closest('[data-tip]');if(!el){{tip.classList.remove('on');return;}}
+var hideT=null;document.addEventListener('touchstart',function(e){{var el=e.target.closest('[data-tip]');clearTimeout(hideT);if(!el){{tip.classList.remove('on');return;}}var t0=e.touches[0];tip.textContent=el.getAttribute('data-tip');tip.classList.add('on');var x=Math.min(t0.clientX+12,window.innerWidth-tip.offsetWidth-8),y=t0.clientY-tip.offsetHeight-14;if(y<8)y=t0.clientY+18;tip.style.left=Math.max(8,x)+'px';tip.style.top=y+'px';hideT=setTimeout(function(){{tip.classList.remove('on');}},3500);}},{{passive:true}});
+document.addEventListener('mousemove',function(e){{if(e.sourceCapabilities&&e.sourceCapabilities.firesTouchEvents)return;var el=e.target.closest('[data-tip]');if(!el){{tip.classList.remove('on');return;}}
 tip.textContent=el.getAttribute('data-tip');tip.classList.add('on');var x=e.clientX+14,y=e.clientY+14;
 if(x+tip.offsetWidth>window.innerWidth-8)x=e.clientX-tip.offsetWidth-10;if(y+tip.offsetHeight>window.innerHeight-8)y=e.clientY-tip.offsetHeight-10;
 tip.style.left=x+'px';tip.style.top=y+'px';}});
@@ -833,7 +901,9 @@ function show(id,push){{var t=document.getElementById('tab-'+id);if(!t)return fa
 tabs.forEach(function(a){{var on=a===t;a.classList.toggle('active',on);a.setAttribute('aria-selected',on?'true':'false');a.tabIndex=on?0:-1;
 var p=document.getElementById(a.getAttribute('aria-controls'));if(p){{p.hidden=!on;p.classList.toggle('active',on);}}}});
 if(push){{try{{history.replaceState(null,'','#'+id);}}catch(e){{}}try{{localStorage.setItem('insam-tab',id);}}catch(e){{}}}}
-window.scrollTo({{top:0,behavior:'auto'}});return true;}}
+window.scrollTo({{top:0,behavior:'auto'}});var ul=t.closest('ul');if(ul){{ul.scrollTo({{left:t.offsetLeft-(ul.clientWidth-t.offsetWidth)/2,behavior:'auto'}});}}markScroll();return true;}}
+function markScroll(){{document.querySelectorAll('.tblwrap,.scroll').forEach(function(el){{var inner=el.classList.contains('scroll')?el.firstElementChild:el.querySelector('table');el.classList.toggle('scrolls',!!inner&&inner.scrollWidth>el.clientWidth+4);}});}}
+window.addEventListener('resize',markScroll);window.addEventListener('load',markScroll);
 tabs.forEach(function(a,i){{a.addEventListener('click',function(ev){{ev.preventDefault();show(a.getAttribute('aria-controls'),true);a.focus();}});
 a.addEventListener('keydown',function(ev){{var j=ev.key==='ArrowRight'?i+1:ev.key==='ArrowLeft'?i-1:ev.key==='Home'?0:ev.key==='End'?tabs.length-1:null;
 if(j===null)return;ev.preventDefault();j=(j+tabs.length)%tabs.length;tabs[j].click();}});}});

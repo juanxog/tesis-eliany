@@ -1,5 +1,5 @@
 """Paso 4: genera informe.html (página web de resultados) a partir de los JSON. Sin datos identificables."""
-import json, os, html, math
+import json, os, html, math, re, itertools
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 E = json.load(open("eda_resultados.json")); K = json.load(open("cluster_resultados.json")); L = json.load(open("reporte_limpieza.json")); MO = json.load(open("modelo_resultados.json")); XA = json.load(open("xai_resultados.json"))
 esc = html.escape
@@ -269,79 +269,129 @@ val_rows = [["Edad mínima", val["edad_min"], "Cumple criterio ≥18"], ["Menore
             ["Celdas vacías (pacientes)", sum(val["celdas_vacias_pac"].values()), ", ".join(val["celdas_vacias_pac"])]]
 unif_rows = [[esc(k), ", ".join(f"{esc(a)} → {esc(b)}" for a, b in v)] for k, v in L["categorias_unificadas"].items()]
 
+CSS = r"""
+:root{color-scheme:light;
+--paper:#f5f7f5;--surface:#ffffff;--surface2:#e9efec;--ink:#14201c;--ink2:#3e4f48;--muted:#78857f;--line:#d3dcd6;--rule:#14201c;
+--accent:#0f5f4c;--accent-ink:#0b4a3b;--tint:#e2efe9;
+--c1:#0a8060;--c2:#c7920f;--c3:#c4472b;--c4:#3d6fb0;--sig:#c4472b;
+--display:'Newsreader',Georgia,'Times New Roman',serif;--body:'Source Serif 4',Georgia,'Times New Roman',serif;--ui:'Source Sans 3','Segoe UI',Helvetica,Arial,sans-serif;--mono:'Source Code Pro',ui-monospace,Menlo,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--paper:#101614;--surface:#161d1a;--surface2:#1e2723;--ink:#e8ede9;--ink2:#b7c2bb;--muted:#7f8b85;--line:#2b3531;--rule:#c9d3cd;--accent:#5cc2a2;--accent-ink:#8ad8bf;--tint:#173029;--c1:#2c9a86;--c2:#b98a1c;--c3:#d95f3a;--c4:#5b8ccc;--sig:#d95f3a}}
+:root[data-theme="dark"]{color-scheme:dark;--paper:#101614;--surface:#161d1a;--surface2:#1e2723;--ink:#e8ede9;--ink2:#b7c2bb;--muted:#7f8b85;--line:#2b3531;--rule:#c9d3cd;--accent:#5cc2a2;--accent-ink:#8ad8bf;--tint:#173029;--c1:#2c9a86;--c2:#b98a1c;--c3:#d95f3a;--c4:#5b8ccc;--sig:#d95f3a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17.5px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";display:block;height:5px;background:var(--accent)}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--c3);outline-offset:2px}
+::selection{background:var(--tint)}
+.wrap{max-width:980px;margin:0 auto;padding:0 28px}
+/* masthead */
+header.mast{padding:30px 0 34px}
+.mast-top{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-bottom:14px;border-bottom:1px solid var(--line)}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(36px,5.4vw,60px);line-height:1;letter-spacing:-.018em;margin:30px 0 16px;max-width:20ch;text-wrap:balance;font-variation-settings:"opsz" 72}
+.sub{font-family:var(--display);font-style:italic;font-weight:400;font-size:21px;line-height:1.4;color:var(--ink2);max-width:58ch;margin:0 0 30px;font-variation-settings:"opsz" 20}
+dl.synopsis{display:grid;grid-template-columns:repeat(3,1fr);margin:0;border-top:1px solid var(--rule)}
+dl.synopsis>div{padding:13px 22px 14px 0;border-bottom:1px solid var(--line);min-width:0}
+dl.synopsis>div.span{grid-column:1/-1;border-bottom:1px solid var(--rule)}
+dl.synopsis>div.span dd{font-family:var(--body);font-size:17px;line-height:1.45;max-width:70ch}
+dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+dd{margin:0;font-family:var(--ui);font-size:14.5px;line-height:1.45;color:var(--ink);overflow-wrap:anywhere}
+@media (max-width:760px){dl.synopsis{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){dl.synopsis{grid-template-columns:1fr}}
+/* índice de pestañas */
+nav.toc{position:sticky;top:0;z-index:5;background:color-mix(in oklab,var(--paper) 92%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--rule);border-bottom:1px solid var(--line)}
+nav.toc ul{list-style:none;margin:0;padding:0;display:flex;gap:0 26px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;padding:13px 0 11px;font-family:var(--ui);font-weight:600;font-size:14px;letter-spacing:.02em;color:var(--ink2);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px}
+nav.toc a:hover{color:var(--ink)} nav.toc a.active{color:var(--accent);border-bottom-color:var(--accent)} nav.toc a:focus-visible{outline-offset:-2px}
+/* secciones y texto */
+section.panel{padding:44px 0 60px} section.panel[hidden]{display:none}
+h2{font-family:var(--display);font-weight:500;font-size:38px;line-height:1.08;letter-spacing:-.015em;margin:0 0 12px;max-width:24ch;text-wrap:balance;font-variation-settings:"opsz" 48}
+h2 .num{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;font-weight:500}
+h3{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.2;letter-spacing:-.005em;margin:44px 0 10px;text-wrap:balance;font-variation-settings:"opsz" 28}
+h4{font-family:var(--ui);font-weight:600;font-size:16px;margin:0 0 6px}
+p{max-width:66ch;margin:10px 0 16px} p.lede{font-size:20px;line-height:1.5;color:var(--ink2);max-width:60ch;margin:6px 0 24px}
+ul.plain{max-width:66ch;padding-left:1.25em;margin:10px 0 18px} ul.plain li{margin:7px 0;padding-left:.15em} ul.plain li::marker{color:var(--accent)}
+.mono{font-family:var(--mono);font-size:13px} .muted{color:var(--muted)}
+code{font-family:var(--mono);font-size:.86em;background:var(--surface2);padding:1px 5px;border-radius:2px}
+/* cifras clave */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0 28px;margin:26px 0 30px;border-top:1px solid var(--rule)}
+.tiles.six{grid-template-columns:repeat(3,1fr)}
+.tile{padding:14px 0 16px;border-bottom:1px solid var(--line)}
+.tile .n{font-family:var(--display);font-weight:500;font-size:46px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--ink);font-variation-settings:"opsz" 72}
+.tile .l{font-family:var(--ui);font-size:14px;color:var(--ink2);margin-top:8px;line-height:1.35} .tile .d{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:5px}
+@media (max-width:640px){.tiles.six{grid-template-columns:repeat(2,1fr)}}
+/* figuras y gráficas */
+figure{margin:28px 0 36px;padding:0}
+figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:8px 16px;flex-wrap:wrap;border-top:1px solid var(--rule);padding:9px 0 12px;font-family:var(--ui);font-size:14px;color:var(--ink2)}
+figcaption b{font-weight:600;color:var(--ink)}
+.fignum{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-right:10px}
+.src{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.02em}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 36px} @media (max-width:720px){.grid2{grid-template-columns:1fr}}
+svg.chart{width:100%;height:auto;display:block;font-family:var(--ui)} svg .lbl{font-size:13px;fill:var(--ink)} svg .val{font-size:12.5px;fill:var(--ink);font-variant-numeric:tabular-nums}
+svg .muted{fill:var(--muted)} svg .tick{font-size:11px;fill:var(--muted)} svg .grid{stroke:var(--line);stroke-width:1} svg .ref{stroke:var(--muted);stroke-dasharray:4 3}
+svg .cell{font-size:9px;fill:var(--ink)} svg .cell.on{fill:#fff} svg .mono{font-family:var(--mono);font-size:11.5px} svg g.row:hover rect:first-child{fill:var(--surface2)}
+/* tablas */
+.tblwrap{overflow-x:auto;margin:16px 0 28px}
+table{border-collapse:collapse;width:100%;font-family:var(--ui);font-size:14.5px;border-top:1.5px solid var(--rule);border-bottom:1px solid var(--rule)}
+th{text-align:left;font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:10px 14px 8px 0;border-bottom:1px solid var(--rule);vertical-align:bottom}
+td{padding:9px 14px 9px 0;border-bottom:1px solid var(--line);vertical-align:top;font-variant-numeric:tabular-nums;line-height:1.45} tr:last-child td{border-bottom:0}
+th:last-child,td:last-child{padding-right:0} table td:first-child{min-width:150px}
+tbody tr:hover td:not(.hm){background:var(--surface2)}
+td.hm{background:color-mix(in oklab,var(--c1) calc(var(--v)*70%),var(--surface));font-family:var(--mono);font-size:13px;color:var(--ink)}
+.chip{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px 1px;border:1px solid var(--line);border-radius:2px;color:var(--ink2);vertical-align:middle;white-space:nowrap}
+.chip.sig{border-color:var(--sig);color:var(--sig)}
+/* notas */
+.callout{border-left:2px solid var(--accent);padding:2px 0 2px 20px;margin:24px 0;max-width:70ch} .callout p{margin:4px 0;max-width:none} .callout.warn{border-left-color:var(--c3)}
+details{margin:10px 0 18px} summary{cursor:pointer;color:var(--accent);font-weight:600;font-family:var(--ui)}
+/* perfiles */
+.profiles{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px 0 12px} @media (max-width:720px){.profiles{grid-template-columns:1fr}}
+.profile{padding:20px 22px 18px;border-top:3px solid var(--c1);background:color-mix(in oklab,var(--c1) 7%,var(--surface))} .profile.two{border-top-color:var(--c2);background:color-mix(in oklab,var(--c2) 9%,var(--surface))}
+.profile .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--muted)} .profile h4{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.15;margin:8px 0 12px;letter-spacing:-.005em}
+.profile ul{padding-left:18px;margin:0;font-family:var(--ui);font-size:15px;line-height:1.5} .profile li{margin:5px 0} .profile li::marker{color:var(--muted)}
+/* ideas */
+.ideas{display:grid;grid-template-columns:repeat(2,1fr);gap:0 40px;margin:8px 0 34px} @media (max-width:720px){.ideas{grid-template-columns:1fr}}
+.idea{padding:16px 0 20px;border-top:1px solid var(--line)} .idea h4{font-family:var(--display);font-weight:500;font-size:21px;line-height:1.2;margin:0 0 8px;letter-spacing:-.005em} .idea p{font-size:15.5px;line-height:1.5;margin:0;color:var(--ink2);max-width:none} .idea em{font-style:normal;font-weight:600;color:var(--ink)}
+/* dudas */
+details.faq{margin:0;padding:18px 0 14px;border-top:1px solid var(--line)}
+details.faq summary{font-family:var(--display);font-weight:500;font-size:21px;line-height:1.3;color:var(--ink);list-style:none;display:flex;gap:14px;align-items:baseline;letter-spacing:-.005em}
+details.faq summary::-webkit-details-marker{display:none} details.faq summary::before{content:"+";font-family:var(--mono);font-size:18px;color:var(--accent);flex:0 0 16px} details.faq[open] summary::before{content:"−"} details.faq[open] summary{color:var(--accent-ink)}
+details.faq p{max-width:70ch;margin:12px 0 4px 30px} details.faq .tblwrap{margin-left:30px}
+/* explicabilidad */
+.examples{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0 30px;margin:14px 0 30px}
+.ex{padding:14px 0 18px;border-top:1px solid var(--rule)} .ex .k,.calc .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--muted)}
+.risk{display:flex;align-items:baseline;gap:12px;margin:6px 0 12px} .risk .n{font-family:var(--display);font-weight:500;font-size:38px;line-height:1;letter-spacing:-.02em} .risk .l{font-family:var(--ui);font-size:13px;color:var(--ink2);line-height:1.35}
+.wf{display:grid;grid-template-columns:1fr 84px 50px;gap:8px;align-items:center;font-family:var(--ui);font-size:13px;padding:3px 0} .wf .wfl b{font-weight:600;color:var(--ink2)}
+.wfb{position:relative;height:9px;background:var(--surface2);overflow:hidden} .wfb i{position:absolute;top:0;height:100%;width:calc(var(--w)/2)} .wfb i.pos{left:50%;background:var(--c3)} .wfb i.neg{right:50%;background:var(--c4)}
+.wfv{text-align:right;font-size:12px} .wfnote{font-family:var(--ui);font-size:12px;color:var(--muted);margin-top:8px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:26px;border:1px solid var(--line);background:var(--surface);padding:22px 24px;margin:12px 0 28px} @media (max-width:720px){.calc{grid-template-columns:1fr}}
+.calc-in{display:flex;flex-direction:column;gap:11px} .calc-in label{display:flex;align-items:center;gap:10px;font-family:var(--ui);font-size:15px;cursor:pointer} .calc-in input[type=checkbox]{width:17px;height:17px;accent-color:var(--accent)} .calc-in label.range{flex-wrap:wrap} .calc-in input[type=range]{width:100%;accent-color:var(--accent)}
+.calc-out .risk .n{font-size:50px;color:var(--accent)}
+/* bibliografía */
+ol.refs{max-width:76ch;padding-left:2.6em;font-family:var(--ui);font-size:14px;line-height:1.5;color:var(--ink2)} ol.refs li{margin:7px 0;padding-left:.2em} ol.refs li::marker{font-family:var(--mono);font-size:12px;color:var(--muted)}
+ol.refs a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in oklab,var(--accent) 40%,transparent)} ol.refs a:hover{border-bottom-color:var(--accent)}
+/* tooltip, pie, impresión */
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--paper);font-family:var(--ui);font-size:13px;line-height:1.35;padding:7px 10px;border-radius:2px;max-width:320px;z-index:20;opacity:0;transition:opacity .12s} #tip.on{opacity:1}
+@media (prefers-reduced-motion:reduce){#tip{transition:none}}
+footer{border-top:1px solid var(--rule);margin-top:24px;padding:22px 0 60px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+@media print{nav.toc,#tip,body::before{display:none} section.panel[hidden]{display:block!important} figure,table,.profile,.idea{break-inside:avoid} body{font-size:11pt}}
+"""
 page = f"""<title>Mujeres con TUS en el INSAM</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<style>
-:root{{color-scheme:light;--bg:#f7f6fb;--surface:#ffffff;--surface2:#efedf6;--ink:#1f1a33;--ink2:#524b6b;--muted:#8b85a3;--line:#dcd8ea;
---c1:#4a3aa7;--c2:#1baf7a;--c3:#eb6834;--c4:#2a78d6;--c1soft:#e6e2f6;--sig:#eb6834;--ok:#0ca30c;--warn:#c98500;
---display:'Fraunces',Georgia,'Times New Roman',serif;--body:'Source Sans 3','Segoe UI',Helvetica,Arial,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace}}
-@media (prefers-color-scheme:dark){{:root:not([data-theme="light"]){{color-scheme:dark;--bg:#16141f;--surface:#1f1c2b;--surface2:#2a2639;--ink:#ece9f5;--ink2:#bfb9d6;--muted:#8e88a8;--line:#3a3550;
---c1:#9085e9;--c2:#199e70;--c3:#d95926;--c4:#3987e5;--c1soft:#2e2950;--sig:#e8825c}}}}
-:root[data-theme="dark"]{{color-scheme:dark;--bg:#16141f;--surface:#1f1c2b;--surface2:#2a2639;--ink:#ece9f5;--ink2:#bfb9d6;--muted:#8e88a8;--line:#3a3550;
---c1:#9085e9;--c2:#199e70;--c3:#d95926;--c4:#3987e5;--c1soft:#2e2950;--sig:#e8825c}}
-*{{box-sizing:border-box}} body{{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}}
-a{{color:var(--c1)}} a:focus-visible,button:focus-visible{{outline:2px solid var(--c3);outline-offset:2px}}
-.wrap{{max-width:960px;margin:0 auto;padding:0 20px}}
-header.mast{{padding:44px 0 26px;border-bottom:1px solid var(--line)}}
-.eyebrow{{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}}
-h1{{font-family:var(--display);font-weight:600;font-size:clamp(30px,4.6vw,46px);line-height:1.08;margin:10px 0 12px;text-wrap:balance;max-width:20ch}}
-.sub{{color:var(--ink2);max-width:65ch;margin:0 0 18px}}
-.meta{{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--mono);font-size:13px;color:var(--ink2)}}
-nav.toc{{position:sticky;top:0;background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}}
-nav.toc ul{{list-style:none;margin:0;padding:8px 0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}}
-nav.toc a{{display:block;padding:7px 12px;border-radius:999px;font-size:14px;color:var(--ink2);text-decoration:none;white-space:nowrap;border:1px solid transparent}} nav.toc a:hover{{background:var(--surface2);color:var(--ink)}}
-nav.toc a.active{{background:var(--c1);color:#fff;font-weight:600}} nav.toc a:focus-visible{{border-color:var(--c3)}}
-section.panel{{padding:36px 0 40px}} section.panel[hidden]{{display:none}}
-h2{{font-family:var(--display);font-weight:600;font-size:30px;line-height:1.15;margin:0 0 6px;text-wrap:balance}}
-h2 .num{{font-family:var(--mono);font-size:13px;color:var(--muted);display:block;letter-spacing:.1em;margin-bottom:6px}}
-h3{{font-family:var(--display);font-weight:600;font-size:21px;margin:34px 0 8px}} h4{{margin:0 0 6px;font-size:16px;font-weight:600}}
-p{{max-width:68ch;margin:8px 0 14px}} p.lede{{font-size:19px;color:var(--ink2)}}
-ul.plain{{max-width:68ch;padding-left:20px}} ul.plain li{{margin:6px 0}}
-.tiles{{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}} @media (max-width:640px){{.tiles{{grid-template-columns:repeat(2,1fr)}}}}
-.tile{{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}}
-.tile .n{{font-family:var(--display);font-size:38px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}} .tile .l{{font-size:13px;color:var(--ink2);margin-top:6px}}
-.tile .d{{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px}}
-figure{{margin:18px 0 26px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px 10px}}
-figure figcaption{{font-size:15px;color:var(--ink2);margin:0 0 6px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}} figcaption b{{color:var(--ink);font-weight:600}}
-figure .src{{font-family:var(--mono);font-size:11.5px;color:var(--muted)}}
-svg.chart{{width:100%;height:auto;display:block;font-family:var(--body)}} svg .lbl{{font-size:13px;fill:var(--ink)}} svg .val{{font-size:12.5px;fill:var(--ink);font-variant-numeric:tabular-nums}}
-svg .muted{{fill:var(--muted)}} svg .tick{{font-size:11px;fill:var(--muted)}} svg .grid{{stroke:var(--line);stroke-width:1}} svg .ref{{stroke:var(--muted);stroke-dasharray:4 3}}
-svg .cell{{font-size:9px;fill:var(--ink)}} svg .cell.on{{fill:#fff}} svg .mono{{font-family:var(--mono);font-size:11.5px}} svg g.row:hover rect:first-child{{fill:var(--surface2)}}
-.grid2{{display:grid;grid-template-columns:1fr 1fr;gap:16px}} @media (max-width:720px){{.grid2{{grid-template-columns:1fr}}}}
-.tblwrap{{overflow-x:auto;margin:14px 0 22px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}}
-table{{border-collapse:collapse;width:100%;font-size:14.5px}} th{{text-align:left;font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line)}}
-td{{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-variant-numeric:tabular-nums}} tr:last-child td{{border-bottom:0}} tbody tr:hover td{{background:var(--surface2)}}
-td.hm{{background:color-mix(in oklab,var(--c1) calc(var(--v)*75%),var(--surface));color:var(--ink);font-family:var(--mono);font-size:13px}}
-.mono{{font-family:var(--mono);font-size:13px}} .muted{{color:var(--muted)}}
-.chip{{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);vertical-align:middle}} .chip.sig{{border-color:var(--sig);color:var(--sig)}}
-.callout{{border-left:3px solid var(--c1);background:var(--c1soft);padding:12px 16px;border-radius:0 8px 8px 0;margin:18px 0;max-width:72ch}} .callout p{{margin:4px 0}}
-.callout.warn{{border-color:var(--c3);background:color-mix(in oklab,var(--c3) 12%,var(--surface))}}
-.profiles{{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}} @media (max-width:720px){{.profiles{{grid-template-columns:1fr}}}}
-.profile{{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;border-top:4px solid var(--c1)}} .profile.two{{border-top-color:var(--c2)}}
-.profile h4{{font-family:var(--display);font-size:20px}} .profile .k{{font-family:var(--mono);font-size:12px;color:var(--muted)}} .profile ul{{padding-left:18px;margin:8px 0;font-size:15px}} .profile li{{margin:4px 0}}
-.ideas{{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px;margin:10px 0 26px}}
-.idea{{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}} .idea p{{font-size:15px;margin:0;color:var(--ink2)}} .idea em{{color:var(--ink);font-style:normal;font-weight:600}}
-details{{margin:10px 0 18px}} summary{{cursor:pointer;color:var(--c1);font-weight:600}}
-#tip{{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font-size:13px;padding:6px 10px;border-radius:6px;max-width:320px;z-index:20;opacity:0;transition:opacity .12s}} #tip.on{{opacity:1}}
-@media (prefers-reduced-motion:reduce){{#tip{{transition:none}}}}
-footer{{padding:30px 0 50px;color:var(--muted);font-size:13.5px;font-family:var(--mono)}}
-.examples{{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:14px 0 22px}} .ex{{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}}
-.ex .k,.calc .k{{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--muted)}} .risk{{display:flex;align-items:baseline;gap:10px;margin:6px 0 10px}} .risk .n{{font-family:var(--display);font-size:34px;font-weight:600}} .risk .l{{font-size:13px;color:var(--ink2);line-height:1.3}}
-.wf{{display:grid;grid-template-columns:1fr 90px 52px;gap:8px;align-items:center;font-size:13px;padding:3px 0}} .wf .wfl b{{font-weight:500}} .wfb{{position:relative;height:10px;background:var(--surface2);border-radius:3px;overflow:hidden}} .wfb i{{position:absolute;top:0;height:100%;width:calc(var(--w)/2)}} .wfb i.pos{{left:50%;background:var(--c3)}} .wfb i.neg{{right:50%;background:var(--c4)}} .wfv{{text-align:right;font-size:12px}} .wfnote{{font-size:12px;color:var(--muted);margin-top:8px}}
-.calc{{display:grid;grid-template-columns:1fr 1fr;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0 22px}} @media (max-width:720px){{.calc{{grid-template-columns:1fr}}}}
-.calc-in{{display:flex;flex-direction:column;gap:9px}} .calc-in label{{display:flex;align-items:center;gap:10px;font-size:15px;cursor:pointer}} .calc-in input[type=checkbox]{{width:18px;height:18px;accent-color:var(--c1)}} .calc-in label.range{{flex-wrap:wrap}} .calc-in input[type=range]{{width:100%;accent-color:var(--c1)}}
-.calc-out .risk .n{{font-size:44px;color:var(--c1)}}
-details.faq{{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:10px 0}} details.faq summary{{font-weight:600;color:var(--ink);font-size:16.5px}} details.faq[open] summary{{margin-bottom:6px;color:var(--c1)}} details.faq p{{max-width:none}}
-ol.refs{{max-width:78ch;padding-left:22px;font-size:14px;color:var(--ink2)}} ol.refs li{{margin:6px 0}} table td:first-child{{min-width:160px}}
-code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:1px 5px;border-radius:4px}}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Source+Sans+3:wght@400;600&family=Source+Code+Pro:wght@400;500&display=swap">
+<style>{CSS}</style>
 
 <header class="mast"><div class="wrap">
-<div class="eyebrow">Informe de análisis · Protocolo v2.0 · INSAM, Panamá</div>
+<div class="mast-top"><span>Ministerio de Salud · Instituto Nacional de Salud Mental · Maestría en Ciencias Clínicas, Psiquiatría</span><span>Informe de análisis · {__import__('datetime').date.today().strftime('%d·%m·%Y')}</span></div>
 <h1>Mujeres hospitalizadas por trastornos por uso de sustancias</h1>
-<p class="sub">Limpieza, análisis exploratorio, bivariado y perfiles clínicos (clustering) de todas las mujeres hospitalizadas por TUS en el Instituto Nacional de Salud Mental entre octubre de 2022 y octubre de 2025. Investigadora: Dra. Eliany Luzcando. Asesoría metodológica: Ing. Juan Andrés Girón.</p>
-<div class="meta"><span>{NP} pacientes</span><span>{NE} episodios</span><span>Base anonimizada</span><span>Python · Gower + PAM</span><span>Generado {__import__('datetime').date.today().isoformat()}</span></div>
+<p class="sub">Características sociodemográficas y clínicas, perfiles y desenlaces de todas las mujeres hospitalizadas por TUS en el Instituto Nacional de Salud Mental de Panamá entre octubre de 2022 y octubre de 2025. Estudio retrospectivo.</p>
+<dl class="synopsis">
+<div class="span"><dt>Pregunta de investigación</dt><dd>¿Cuáles son las características sociodemográficas y clínicas de las mujeres hospitalizadas por trastornos por uso de sustancias en el INSAM entre octubre de 2022 y octubre de 2025?</dd></div>
+<div><dt>Diseño</dt><dd>Observacional, descriptivo, retrospectivo. Censo, sin cálculo de muestra.</dd></div>
+<div><dt>Población</dt><dd>{NP} mujeres de 18 años o más · {NE} episodios · CIE-10 F10–F19</dd></div>
+<div><dt>Investigadora</dt><dd>Dra. Eliany Luzcando A. · Residencia de Psiquiatría, INSAM</dd></div>
+<div><dt>Asesoría</dt><dd>Dra. Juana Herrera, clínica · Ing. Juan Andrés Girón, metodológica</dd></div>
+<div><dt>Ética y registro</dt><dd>CBIHN-2026020002 · RESEGIS 5054 · base anonimizada, sin datos identificables</dd></div>
+<div><dt>Análisis</dt><dd>Python 3 · Gower + PAM · logística con EE robustos · SHAP</dd></div>
+</dl>
 </div></header>
 <nav class="toc" aria-label="Secciones"><div class="wrap"><ul role="tablist">
 <li><a role="tab" id="tab-resumen" href="#resumen" aria-controls="resumen" aria-selected="true" class="active">Resumen</a></li>
@@ -354,13 +404,13 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
 <li><a role="tab" id="tab-xai" href="#xai" aria-controls="xai" aria-selected="false">XAI</a></li>
 <li><a role="tab" id="tab-ideas" href="#ideas" aria-controls="ideas" aria-selected="false">Ideas</a></li>
 <li><a role="tab" id="tab-metodos" href="#metodos" aria-controls="metodos" aria-selected="false">Métodos</a></li>
-<li><a role="tab" id="tab-defensa" href="#defensa" aria-controls="defensa" aria-selected="false">Defensa</a></li>
+<li><a role="tab" id="tab-defensa" href="#defensa" aria-controls="defensa" aria-selected="false">Dudas</a></li>
 <li><a role="tab" id="tab-literatura" href="#literatura" aria-controls="literatura" aria-selected="false">Literatura</a></li>
 </ul></div></nav>
 
 <section id="resumen" class="panel active" role="tabpanel" aria-labelledby="tab-resumen"><div class="wrap">
-<h2><span class="num">RESUMEN</span>Lo que dicen los datos</h2>
-<div class="tiles">
+<h2><span class="num">Resumen</span>Lo que dicen los datos</h2>
+<div class="tiles six">
 <div class="tile"><div class="n">{NP}</div><div class="l">mujeres, {NE} episodios</div><div class="d">1,5 episodios por paciente</div></div>
 <div class="tile"><div class="n">{edad['mediana']:.0f}</div><div class="l">años, mediana de edad</div><div class="d">inicio del consumo a los {ini['mediana']:.0f}</div></div>
 <div class="tile"><div class="n">{g(pc['violencia_intrafamiliar'],'Sí')['pct']:.0f}%</div><div class="l">violencia intrafamiliar</div><div class="d">{g(pc['abuso_sexual'],'Sí')['pct']:.0f}% abuso sexual</div></div>
@@ -379,7 +429,7 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
 </div></section>
 
 <section id="limpieza" class="panel" role="tabpanel" aria-labelledby="tab-limpieza" hidden><div class="wrap">
-<h2><span class="num">01 · LIMPIEZA</span>De la hoja de cálculo a una base analizable</h2>
+<h2><span class="num">Paso 1 · Limpieza</span>De la hoja de cálculo a una base analizable</h2>
 <p class="lede">La base original tenía nombres y cédulas, categorías escritas de tres formas distintas y varias inconsistencias internas. El script <code>01_limpieza.py</code> deja dos tablas anónimas y documenta cada cambio.</p>
 <h3>Qué se hizo</h3>
 <ul class="plain">
@@ -396,7 +446,7 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
 </div></section>
 
 <section id="pacientes" class="panel" role="tabpanel" aria-labelledby="tab-pacientes" hidden><div class="wrap">
-<h2><span class="num">02 · DESCRIPTIVO</span>Quiénes son las {NP} pacientes</h2>
+<h2><span class="num">Paso 2 · Descriptivo · pacientes</span>Quiénes son las {NP} pacientes</h2>
 <p class="lede">Edad media {edad['media']} ± {edad['de']} años (rango {edad['min']:.0f}–{edad['max']:.0f}). Seis de cada diez tienen menos de 35 años. Casi todas son solteras, desempleadas y viven con familia.</p>
 <div class="grid2">
 <figure><figcaption><b>Grupo de edad</b><span class="src">pacientes</span></figcaption>{hbar(pc['grupo_edad'],'--c4')}</figure>
@@ -420,7 +470,7 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
 </div></section>
 
 <section id="episodios" class="panel" role="tabpanel" aria-labelledby="tab-episodios" hidden><div class="wrap">
-<h2><span class="num">03 · DESCRIPTIVO</span>Cómo transcurren los {NE} episodios</h2>
+<h2><span class="num">Paso 3 · Descriptivo · episodios</span>Cómo transcurren los {NE} episodios</h2>
 <p class="lede">{g(ec['motivo_hosp'],'Crisis')['pct']}% de los ingresos fue por crisis y solo {g(ec['motivo_hosp'],'Programa CETA')['pct']}% fue un ingreso programado al programa de rehabilitación. La mediana de estancia es {dias['mediana']:.0f} días (RIC {dias['q1']:.0f}–{dias['q3']:.0f}).</p>
 <div class="grid2">
 <figure><figcaption><b>Síntomas al ingreso</b><span class="src">episodios</span></figcaption>{hbar(E['epi_sintomas'],'--c3')}</figure>
@@ -434,7 +484,7 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
 </div></section>
 
 <section id="bivariado" class="panel" role="tabpanel" aria-labelledby="tab-bivariado" hidden><div class="wrap">
-<h2><span class="num">04 · BIVARIADO</span>Qué se asocia con qué</h2>
+<h2><span class="num">Paso 4 · Bivariado</span>Qué se asocia con qué</h2>
 <p class="lede">Primero se replican en Python los cruces del plan de análisis (χ² de Pearson o Fisher, OR con IC95%, Mann-Whitney, Kruskal-Wallis). Después se añade un cribado más amplio con corrección por comparaciones múltiples (FDR de Benjamini-Hochberg), que el protocolo no contemplaba pero que protege de falsos positivos.</p>
 <h3>Bloque A · Policonsumo y presentación clínica <span class="chip">episodios, n={NE}</span></h3>
 {table(["Exposición","Síntoma","Con vs sin exposición","OR (IC95%)","Prueba","p"], assoc_rows(A))}
@@ -459,7 +509,7 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
 </div></section>
 
 <section id="clusters" class="panel" role="tabpanel" aria-labelledby="tab-clusters" hidden><div class="wrap">
-<h2><span class="num">05 · CLUSTERING</span>Dos perfiles clínicos</h2>
+<h2><span class="num">Paso 5 · Clustering</span>Dos perfiles clínicos</h2>
 <p class="lede">Según el plan de análisis: {len(K['variables_entrada'])} variables sociodemográficas y clínicas de entrada (sin desenlaces), distancia de Gower para datos mixtos, k-medoides (PAM) y jerárquico, número de clústeres por silueta y codo, estabilidad por bootstrap.</p>
 <div class="grid2">
 <figure><figcaption><b>Elección de k</b><span class="src">coeficiente de silueta</span></figcaption>{silhouette(K['k_evaluados'])}</figure>
@@ -497,7 +547,7 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
 </div></section>
 
 <section id="modelo" class="panel" role="tabpanel" aria-labelledby="tab-modelo" hidden><div class="wrap">
-<h2><span class="num">06 · MODELO PREDICTIVO</span>¿Quién abandonará el tratamiento?</h2>
+<h2><span class="num">Paso 6 · Modelo predictivo</span>¿Quién abandonará el tratamiento?</h2>
 <p class="lede">De los tres desenlaces disponibles, el abandono del tratamiento (alta voluntaria, salida sin autorización médica o expulsión del programa) es el único con eventos suficientes y señal clara. Se construyó una regresión logística con seis predictores <em>conocidos en el momento del ingreso</em>, validada por remuestreo, y se tradujo a un puntaje de riesgo en puntos.</p>
 <h3>Cómo se construyó</h3>
 <ul class="plain">
@@ -548,7 +598,7 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
 </div></section>
 
 <section id="xai" class="panel" role="tabpanel" aria-labelledby="tab-xai" hidden><div class="wrap">
-<h2><span class="num">07 · EXPLICABILIDAD (XAI)</span>Por qué el modelo dice lo que dice</h2>
+<h2><span class="num">Paso 7 · Explicabilidad</span>Por qué el modelo dice lo que dice</h2>
 <p class="lede">Un modelo que solo entrega un número no sirve en clínica. Aquí se abre la caja: cuánto pesa cada variable en conjunto, cómo empuja el riesgo en cada episodio, qué habría cambiado el pronóstico de una paciente concreta, y una calculadora para probar escenarios.</p>
 <h3>Método</h3>
 <ul class="plain">
@@ -590,13 +640,13 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
 </div></section>
 
 <section id="ideas" class="panel" role="tabpanel" aria-labelledby="tab-ideas" hidden><div class="wrap">
-<h2><span class="num">08 · LLUVIA DE IDEAS</span>Qué hacer con esto</h2>
+<h2><span class="num">Propuestas · Lluvia de ideas</span>Qué hacer con esto</h2>
 <p class="lede">Veintidós ideas ordenadas por urgencia: lo que la tesis necesita para sustentarse, lo que los datos permiten analizar además, lo que el INSAM podría cambiar y hacia dónde seguir.</p>
 {ideas_html}
 </div></section>
 
 <section id="metodos" class="panel" role="tabpanel" aria-labelledby="tab-metodos" hidden><div class="wrap">
-<h2><span class="num">09 · MÉTODOS</span>Reproducibilidad y limitaciones</h2>
+<h2><span class="num">Anexo · Métodos y reproducibilidad</span>Reproducibilidad y limitaciones</h2>
 <h3>Pipeline</h3>
 <ul class="plain">
 <li><code>01_limpieza.py</code> → <code>pacientes_limpio.csv</code>, <code>episodios_limpio.csv</code>, <code>reporte_limpieza.json</code>.</li>
@@ -633,7 +683,7 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
  ["19 Limitaciones","Cumplido","Sección Limitaciones"],
  ["21 Generalización","Cumplido","Un centro de referencia nacional; validación externa pendiente (Ideas)"],
  ["22 Financiación","Cumplido","Protocolo: donación de tiempo, sin patrocinio"]])}
-<h3>Glosario para la sustentación</h3>
+<h3>Glosario</h3>
 {table(["Término","Qué mide","Cómo leerlo aquí"], [
  ["Odds ratio (OR)","Cuántas veces mayores son las odds del desenlace en expuestas frente a no expuestas","OR 2 duplica las odds; el IC95% que cruza 1 no permite descartar ausencia de asociación"],
  ["Valor q (FDR)","Valor p ajustado por comparaciones múltiples [36]","q&lt;0,05: menos de 5% de los hallazgos declarados serían falsos positivos"],
@@ -656,8 +706,8 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
 </ul>
 </div></section>
 <section id="defensa" class="panel" role="tabpanel" aria-labelledby="tab-defensa" hidden><div class="wrap">
-<h2><span class="num">10 · PREGUNTAS DE DEFENSA</span>Lo que un jurado va a preguntar</h2>
-<p class="lede">Diez preguntas formuladas al revisar este informe, respondidas con los números exactos y la referencia metodológica que las sostiene. Sirven como guion para la sustentación.</p>
+<h2><span class="num">Anexo · Respuestas a posibles dudas</span>Respuestas a posibles dudas</h2>
+<p class="lede">Diez dudas que surgieron al revisar este informe, respondidas con los números exactos y la referencia metodológica que las sostiene. Sirven para anticipar las preguntas más probables.</p>
 <h3>Separación de los clústeres</h3>
 <details open class="faq"><summary>1. ¿La silueta de {K['silueta']} es una separación real aunque débil, o hay que matizarla?</summary>
 <p>Hay que matizarla. Rousseeuw definió el coeficiente de silueta [31] y Kaufman y Rousseeuw propusieron la lectura habitual: más de 0,70 estructura fuerte, 0,51 a 0,70 razonable, 0,26 a 0,50 débil y menos de 0,25 sin estructura sustancial [32]. El valor de {K['silueta']} está en la frontera entre las dos últimas. Lo que autoriza a hablar de una partición y no de ruido no es la silueta sino tres apoyos independientes: la estabilidad por remuestreo (ARI {K['estabilidad_ARI']['media']} en 50 submuestras al 80%, el procedimiento de Hennig [34]), la coincidencia entre dos algoritmos distintos (ARI {K['concordancia_pam_vs_jerarquico_ARI']} entre PAM y jerárquico, medida con el índice de Hubert y Arabie [33]) y la validez externa: los perfiles difieren en desenlaces que no entraron al clustering, como el abandono (p={pfmt(K['pruebas_p']['Abandono (alta vol/SSAM/expulsión)'])}). Frase recomendada para el texto final: <em>estructura débil pero estable y clínicamente interpretable</em>. En datos clínicos mixtos con distancia de Gower las siluetas rara vez superan 0,30 [30,45].</p></details>
@@ -688,7 +738,7 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
 </div></section>
 
 <section id="literatura" class="panel" role="tabpanel" aria-labelledby="tab-literatura" hidden><div class="wrap">
-<h2><span class="num">11 · LITERATURA</span>Contraste con la evidencia publicada</h2>
+<h2><span class="num">Anexo · Literatura</span>Contraste con la evidencia publicada</h2>
 <p class="lede">Cada hallazgo principal se confrontó con revisiones sistemáticas, metaanálisis y cohortes comparables. La columna de veredicto distingue lo que replica evidencia previa, lo que la matiza y lo que es genuinamente nuevo para Panamá.</p>
 {table(["Hallazgo en el INSAM","Qué dice la literatura","Veredicto"], [
  ["<b>Violencia intrafamiliar en el 81% y abuso sexual en el 55%</b> de las pacientes.", "En 343 mujeres con TUS y TEPT en tratamiento, 93% reportó algún abuso o negligencia infantil y 7 de cada 10 abuso sexual moderado o grave [11]. En 145 mujeres drogodependientes españolas, la prevalencia total de maltrato psicológico y abuso sexual fue 63% [12]. La revisión regional de mujeres consumidoras en América Latina documenta la violencia como constante en las trayectorias de consumo [25].", '<span class="chip">Concordante</span> Las cifras del INSAM están en el rango alto de lo publicado, comparable a muestras clínicas con trauma.'],
@@ -704,7 +754,7 @@ code{{font-family:var(--mono);font-size:.9em;background:var(--surface2);padding:
 ])}
 <div class="callout"><p><b>Lo que aporta este estudio.</b> No existía una descripción publicada de mujeres hospitalizadas por TUS en Panamá. Sobre ese vacío, tres resultados son propios: la magnitud del trauma en esta población (por encima de la mayoría de las series europeas), la coexistencia de un perfil psicótico-externalizante con alto contacto legal y pobreza extrema, y un puntaje de abandono construido solo con variables del ingreso. Los tres son hipótesis que un estudio prospectivo o multicéntrico debería confirmar.</p></div>
 <h3>Referencias</h3>
-<p class="muted" style="font-size:14px;max-width:70ch">1 a 29: evidencia clínica. 30 a 47: métodos estadísticos citados en las pestañas Métodos, Modelo, XAI y Defensa.</p>
+<p class="muted" style="font-size:14px;max-width:70ch">1 a 29: evidencia clínica. 30 a 47: métodos estadísticos citados en las pestañas Métodos, Modelo, XAI y Dudas.</p>
 <ol class="refs">
 <li>Brook M, Hilty DM, Liu W, Hu R, Frye MA. Discharge against medical advice from inpatient psychiatric treatment: a literature review. <i>Psychiatr Serv</i>. 2006;57(8):1192–1198. <a href="https://pubmed.ncbi.nlm.nih.gov/16870972/">PubMed</a></li>
 <li>Öhlin L, Hesse M, Fridell M, Tätting P. Poly-substance use and antisocial personality traits at admission predict cumulative retention in a buprenorphine programme with mandatory work and high compliance profile. <i>BMC Psychiatry</i>. 2011;11:81. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3112080/">PMC</a></li>
@@ -790,6 +840,8 @@ window.addEventListener('hashchange',function(){{show((location.hash||'').replac
 }})();
 </script>
 """
+_fc = itertools.count(1)
+page = re.sub(r'<figcaption><b>', lambda m: f'<figcaption><b><span class="fignum">Figura {next(_fc)}</span>', page)
 open("informe.html", "w", encoding="utf-8").write(page)
 # Versión autónoma para hospedar en cualquier servidor (GitHub Pages, Netlify, Cloudflare, servidor institucional)
 os.makedirs("../docs", exist_ok=True)
